@@ -52,7 +52,6 @@ fun main(args: Array<String>){
     estaJalado(7.0)
     estaJalado(10.0)
 
-
 }
 
 // FUNCION
