@@ -62,12 +62,14 @@ fun main(args: Array<String>){
 
 
     val arregloCumpleanios: IntArray = intArrayOf(1,2,3,4) // dato inmutable
-   // val arregloTodo: Array<Any> = arrayOf(1, "asdf", 10.2, true)
+    val arregloTodo1: Array<Any> = arrayOf(1, "asdf", 10.2, true) // arreglo inmutable
     var arregloTodo: Array<Any> = arrayOf(1, "asdf", 10.2, true)
 
 
     arregloCumpleanios[0] = 5
     arregloCumpleanios.set(0, 5)
+
+
   //  arregloCumpleanios = arrayOf(5,3,2,0)
     // variable no puede ser rasignada
     //
@@ -81,6 +83,8 @@ fun main(args: Array<String>){
     // Se pueden utilizat sus metodos para cambiar a la clase
 
     arregloTodo = arrayOf(5,2,3,4)
+
+
     val notas: ArrayList<Int> = arrayListOf(1,2,3,4,5,6)
 
     // Iteraciones
