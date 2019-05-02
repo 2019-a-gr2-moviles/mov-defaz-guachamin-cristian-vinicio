@@ -206,7 +206,7 @@ fun sumarDosNumeros (numUno: Int, numDos: Int): Int {
 En java:
 ArrayList, Array
  */
-class Usuario(val cedula:String){
+/*class Usuario(val cedula:String){
     public var nombre: String = ""
     public var apellido:String="";
 
@@ -221,8 +221,8 @@ class UsuarioKT(public var nombre: String,
                 protected var id: Int){
 
     // Public y Unit son por defecto, los que no especifiquen o que devulve
-    private fun hola():Unit{
-        return this.apellido
+    private fun hola(): String {
+        return zthis.apellido
     }
     protected fun hola2(){
     }
@@ -307,7 +307,7 @@ class BaseDeDatos(){
             //this.usuarios
         }
     }
-}
+}*/
 
 
 
