@@ -1,0 +1,4 @@
+IF;G;Ideal;1.13;10228
+SI1;I;Ideal;1.51;10232
+VVS1;G;Ideal;1.21;10232
+SI1;G;Premium;1.51;10235
