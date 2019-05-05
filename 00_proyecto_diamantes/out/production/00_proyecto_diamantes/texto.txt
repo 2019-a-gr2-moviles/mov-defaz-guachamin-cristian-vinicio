@@ -2,3 +2,6 @@ IF;G;Ideal;1.13;10228
 SI1;I;Ideal;1.51;10232
 VVS1;G;Ideal;1.21;10232
 SI1;G;Premium;1.51;10235
+Bell;G;5.0;best;premiun
+Criss;D;3.2;best;ideal
+Drew;E;2.6;worst;low

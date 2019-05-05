@@ -1,4 +1,4 @@
-IF;G;Ideal;1.13;10228
-SI1;I;Ideal;1.51;10232
-VVS1;G;Ideal;1.21;10232
-SI1;G;Premium;1.51;10235
+Amsterdam Diamond;Internally Flawless;Faint;Good (Pear);3.4;456
+Allnatt Diamond;Included;Very Light;Premium (Princess);1.1;340
+Briolette of India;Sightly Included;Colorless;Premium (Princess);2.3;430
+Akbar Salah;Flawless;Near Colorless;Ideal (Round);2.2;234
