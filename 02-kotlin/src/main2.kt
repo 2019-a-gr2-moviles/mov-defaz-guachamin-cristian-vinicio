@@ -28,12 +28,12 @@
              }
          }
      }
-/*
+
      println("Notas modificadas:")
      notasDos.forEach {
          println("$it")
      }
-*/
+
 
      // devolver solo las notas mayores a 8
      val respuestaFiler = notas.filter {
