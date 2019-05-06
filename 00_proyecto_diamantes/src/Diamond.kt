@@ -35,7 +35,7 @@ class DiamanteBDD(
             }
                 // Agregando a Archivo
                 try {
-                    val file = FileWriter("src/texto.txt",true)
+                    val file = FileWriter("src/texto.csv",true)
                     file.write(text)
                     file.close()
                     text = "" // clean the items
@@ -48,7 +48,7 @@ class DiamanteBDD(
         fun listarDiamantes(): ArrayList<DiamanteBDD>{
             val listaDiamantes = ArrayList<DiamanteBDD>() // Lista de diamantes
             try {
-                val lineas = File("src/texto.txt").readLines()
+                val lineas = File("src/texto.csv").readLines()
                 lineas.forEach{
                     val d = it.split(";")
                     val diamond = DiamanteBDD(d[0],d[1],d[2],d[3],d[4],d[5])
@@ -88,8 +88,5 @@ class DiamanteBDD(
             }
             return null
         }
-
-
-
     }
 }

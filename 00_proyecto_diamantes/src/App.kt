@@ -5,7 +5,7 @@ import java.awt.Font.PLAIN
 import java.io.FileWriter
 import java.io.IOException
 
-val optionClarity = arrayOf<Any>(
+val optionClarity = arrayOf<Any>( // array of Clarity options
     "Flawless",
     "Internally Flawless",
     "Very Very Sightly Included",
@@ -15,7 +15,7 @@ val optionClarity = arrayOf<Any>(
 )
 val optionClar = JComboBox(optionClarity)
 
-val optionColor = arrayOf<Any>(
+val optionColor = arrayOf<Any>( // array of Color options
     "Colorless",
     "Near Colorless",
     "Faint",
@@ -24,7 +24,7 @@ val optionColor = arrayOf<Any>(
 )
 val optionCol = JComboBox(optionColor)
 
-val optionCut = arrayOf<Any>(
+val optionCut = arrayOf<Any>( // array of Cut options
     "Ideal (Round)",
     "Premium (Princess)",
     "Very good (Marquise)",
@@ -34,29 +34,29 @@ val optionCut = arrayOf<Any>(
 val optionCuts = JComboBox(optionCut)
 
 fun main() {
-    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
-    val arrMain: Array<String> = arrayOf("New","Search diamond","Modify","Delete","Exit")
-    val icon = ImageIcon("src/diamond.png")
+    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()) // L&F
+    val arrMain: Array<String> = arrayOf("New","Search diamond","Modify","Delete","Exit") // main menus
+    val icon = ImageIcon("src/diamond.png") // icon
 
     // Main menu loop
     do {
     val x = JOptionPane.showOptionDialog(null, "Welcome to Diamonds EPN, please select an option",
-        "Diamonds EPN", 1,3,icon,arrMain,null )
+        "Diamonds EPN", 1,3,icon,arrMain,null ) // menu options
         when (x) {
             0 -> { // add new diamond
                 add()
             }
-            1 -> {
+            1 -> { // search any diamond
                 find()
             }
-            2 -> {
+            2 -> { // change any diamond
                 modify()
             }
-            3 -> {
+            3 -> { // deete any diamond
                 val paramName = JOptionPane.showInputDialog(null,"Diamond's Name: ")
                 delete(paramName, true)
             }
-            4 -> {
+            4 -> { // close the program
                 System.exit(0)
             }
         }
@@ -130,17 +130,20 @@ fun add(){
 fun find(){
     val arrFind: Array<String> = arrayOf("View all","Filter by..","Return to menu")
     do{
-        var x = JOptionPane.showOptionDialog(null, "Available diamonds, please select an option",
+        var x = JOptionPane.showOptionDialog(null, "Diamonds catalog, please select an option",
             "Diamonds EPN", 1,3,null,arrFind,null )
         when (x) {
             0 -> { // show all
                 var items = "" // Sumarize new items
+                var cont = 0
                 DiamanteBDD.listarDiamantes().forEach {
                     items +="Name: ${it.name}\nClarity: ${it.clarity}\nColor: ${it.color}\n" +
                             "Cut: ${it.cut}\nCarat: ${it.carat}        Price: ${it.price}\n\n"
+                    cont++
                 }
                 println(items)
-                showText(items)
+                showText("$items \nTotal diamonds = $cont")
+
             }
             1 -> { // filter by category
                 val arrFilter: Array<String> = arrayOf("by Name","by Clarity","by Color","by Cut","Volver al menú")
@@ -168,12 +171,10 @@ fun find(){
                             y = 5
                         }
                     }
-
                 }while (y in 0..4)
-                println("Buscar uno solo")
             }
-            2 -> {
-               x = 3 // finishing loop
+            2 -> { // finishing loop
+               x = 3
             }
         }
     }while (x in 0..2)
@@ -181,10 +182,10 @@ fun find(){
 
 // Actualizr un diamante, buscándolo por su nombre
 fun modify(){
-    val paramName = JOptionPane.showInputDialog(null,"Diamond's Name: ")
+    val paramName = JOptionPane.showInputDialog(null,"Diamond's Name: ").trim()
     val diamondToModify = DiamanteBDD.searchBy(paramName)
     if (diamondToModify != null) {
-        val arrCar: Array<String> = arrayOf("Name","Clarity","Color","Cut","Carat","Price","Return to menu")
+        val arrCar: Array<String> = arrayOf("Change Name","Change Clarity","Change Color","Change Cut","Change Carat","Change Price")
         delete(paramName, false) // Borra la linea del diamante a modificar
         when(JOptionPane.showOptionDialog(null, "Modifying '$paramName' diamond, please select an option",
             "Diamonds EPN", 1,3,null,arrCar,null )){
@@ -216,7 +217,7 @@ fun modify(){
                     "Cut: ${item.cut}\nCarat: ${item.carat}        Price: ${item.price}\n\n"
         }
         showText(items)
-        println(items)
+      //  println(items)
         DiamanteBDD.addDiamond(diamondToModify as ArrayList<DiamanteBDD>)
     }else{
         JOptionPane.showMessageDialog(null,"$paramName no esta registrado")
@@ -225,7 +226,6 @@ fun modify(){
 
 // Delete diamonds
 fun delete(paramName: String, ok: Boolean){
-
     val diamondToDelete = DiamanteBDD.searchBy(paramName) // Averiguamos si existe
     val newList = ArrayList<DiamanteBDD>() // Nueva lista generada
     if (diamondToDelete != null) {
@@ -244,36 +244,36 @@ fun delete(paramName: String, ok: Boolean){
         }
             // Sobreescribiendo el archivo
         try {
-            val file = FileWriter("src/texto.txt")
+            val file = FileWriter("src/texto.csv")
             file.write(text)
             file.close()
         }catch (e: IOException){
             println("No se puede leer")
         }
-        if(ok){
+        if(ok){ // Si y solo si es llamado exclusivamente para borrar
             showText(items)
         }
     }
 }
 
+// Muestra los resultados de la búsqueda
 fun showFind(param: String){
     var items = ""
+    var cont = 0
     DiamanteBDD.searchBy(param)?.forEach { item ->
         items +="Name: ${item.name}\nClarity: ${item.clarity}\nColor: ${item.color}\n" +
                 "Cut: ${item.cut}\nCarat: ${item.carat}        Price: $ ${item.price}\n\n"
+        cont++
     }
-    showText(items)
-
+    showText("$items \nTotal diamonds = $cont")
 }
 
-// Show results in JTextArea
+// Show results in JTextArea over JOptionPane
 fun showText(items: String){
     val txt = JTextArea(items)
     val scr = JScrollPane(txt)
-    txt.font = Font("Tahoma", PLAIN, 12)
+    txt.font = Font("Tahoma", PLAIN, 11)
     txt.isEditable = false
-    scr.preferredSize = Dimension(230, 300)
+    scr.preferredSize = Dimension(220, 300)
     JOptionPane.showMessageDialog(null,scr,"Available Diamonds !!!",1,null)
 }
-
-
