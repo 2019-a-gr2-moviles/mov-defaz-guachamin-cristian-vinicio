@@ -1,3 +1,5 @@
+
+
 class Usuario(val cedula: String) {
     public var nombre: String = ""
     private var apellido: String = ""
@@ -17,12 +19,14 @@ class UsuarioKT(
     protected var id: Int
 ) {
 
-    // Public y Unit son por defecto, los que no especifiquen o que devulve
+    // Public y Unit son por defecto,
+    // los que no especifiquen o que devulve
     private fun hola(): String {
         return this.apellido
     }
 
     protected fun hola2() {
+
     }
 
     // Metodos static
