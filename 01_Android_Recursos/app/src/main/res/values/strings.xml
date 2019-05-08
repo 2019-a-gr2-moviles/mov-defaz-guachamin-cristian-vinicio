@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Te odio Android Studio</string>
+    <string name="hola_mundo">Hola mundo</string> <!-- estandar: minusculas separadas por guiones bajos-->
 </resources>
