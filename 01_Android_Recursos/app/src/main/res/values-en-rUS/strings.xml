@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Te odio muchísimo Android Studio</string>
-    <string name="hola_mundo">Hola Mundo!</string>
+    <string name="hola_mundo">Hello World</string>
 </resources>
