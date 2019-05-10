@@ -3,7 +3,7 @@ import java.io.FileWriter
 import java.io.IOException
 
 // Diamond class
-class DiamanteBDD(
+class DiamondBDD(
     var name: String,
     var clarity: String,
     var color: String,
@@ -22,65 +22,66 @@ class DiamanteBDD(
     )
 
     companion object {
-        private val listaDiamantes = arrayListOf<DiamanteBDD>()
-        private var text: String = ""
+        private val diamondList1 = arrayListOf<DiamondBDD>()
 
-        // Agregar una lista de diamantes a la BDD
-        fun addDiamond(diamante: ArrayList<DiamanteBDD>) {
-            diamante.forEach {
-                listaDiamantes.add(it)
-                // Creando linea para archivo
-                text+="${it.name};${it.clarity};${it.color};${it.cut};${it.carat};${it.price}\n"
+        // Adding arraylist od Diamonds to Diamond BD
+        fun addDiamond(diamond: ArrayList<DiamondBDD>) {
+            var lineToFile = ""
+            diamond.forEach { eachDiamond ->
+                diamondList1.add(eachDiamond)
+                lineToFile+="${eachDiamond.name};${eachDiamond.clarity};${eachDiamond.color};" +
+                        "${eachDiamond.cut};${eachDiamond.carat};${eachDiamond.price}\n"
             }
-                // Agregando a Archivo
-                try {
-                    val file = FileWriter("src/texto.csv",true)
-                    file.write(text)
-                    file.close()
-                    text = "" // clean the items
-                }catch (e: IOException){
-                    println("No se puede leer")
-                }
+            writeLineToFile(lineToFile)
+            lineToFile = "" // clean line
         }
 
-        // Listar diamantes de arrayList desde archivo
-        fun listarDiamantes(): ArrayList<DiamanteBDD>{
-            val listaDiamantes = ArrayList<DiamanteBDD>() // Lista de diamantes
+        private fun writeLineToFile(lineToFile: String){
             try {
-                val lineas = File("src/texto.csv").readLines()
-                lineas.forEach{
-                    val d = it.split(";")
-                    val diamond = DiamanteBDD(d[0],d[1],d[2],d[3],d[4],d[5])
-                    listaDiamantes.add(diamond)
+                val file = FileWriter("src/texto.csv",true)
+                file.write(lineToFile)
+                file.close()
+            }catch (e: IOException){
+                println("Cannot read")
+            }
+        }
+
+        fun showAllDiamondsFromFile(): ArrayList<DiamondBDD>{
+            val listOfDiamonds = ArrayList<DiamondBDD>()
+            try {
+                val diamondLinesFromFile = File("src/texto.csv").readLines()
+                diamondLinesFromFile.forEach{ diamondLine ->
+                    val arrayDiamond = diamondLine.split(";")
+                    val newDiamondFromLine = DiamondBDD(arrayDiamond[0],arrayDiamond[1],arrayDiamond[2],arrayDiamond[3],arrayDiamond[4],arrayDiamond[5])
+                    listOfDiamonds.add(newDiamondFromLine)
                 }
             }catch (e: IOException){
                 println("Cannot read")
             }
-            return listaDiamantes
+            return listOfDiamonds
         }
 
-        // Buscar diamantes por cataegoria
-        fun searchBy(param: String): List<DiamanteBDD>? {
-            listarDiamantes().forEach {
-                when(param){
-                    it.name -> {
-                        return listarDiamantes().filter { diam ->
-                            diam.name == param
+        fun searchDiamondByCategory(categoryDiamond: String): List<DiamondBDD>? {
+            showAllDiamondsFromFile().forEach {diamond ->
+                when(categoryDiamond){
+                    diamond.name -> {
+                        return showAllDiamondsFromFile().filter { eachDiamond ->
+                            eachDiamond.name == categoryDiamond
                         }
                     }
-                    it.clarity -> {
-                        return listarDiamantes().filter {diam ->
-                            diam.clarity == param
+                    diamond.clarity -> {
+                        return showAllDiamondsFromFile().filter { eachDiamond ->
+                            eachDiamond.clarity == categoryDiamond
                         }
                     }
-                    it.color -> {
-                        return listarDiamantes().filter {diam ->
-                            diam.color == param
+                    diamond.color -> {
+                        return showAllDiamondsFromFile().filter { eachDiamond ->
+                            eachDiamond.color == categoryDiamond
                         }
                     }
-                    it.cut -> {
-                        return listarDiamantes().filter {diam ->
-                            diam.cut == param
+                    diamond.cut -> {
+                        return showAllDiamondsFromFile().filter { eachDiamond ->
+                            eachDiamond.cut == categoryDiamond
                         }
                     }
                 }

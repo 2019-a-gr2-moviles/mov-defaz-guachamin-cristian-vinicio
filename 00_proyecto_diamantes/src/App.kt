@@ -5,7 +5,7 @@ import java.awt.Font.PLAIN
 import java.io.FileWriter
 import java.io.IOException
 
-val optionClarity = arrayOf<Any>( // array of Clarity options
+val arrayOfClarityOptions = arrayOf<Any>(
     "Flawless",
     "Internally Flawless",
     "Very Very Sightly Included",
@@ -13,196 +13,195 @@ val optionClarity = arrayOf<Any>( // array of Clarity options
     "Sightly Included",
     "Included"
 )
-val optionClar = JComboBox(optionClarity)
+val clarityCombo = JComboBox(arrayOfClarityOptions)
 
-val optionColor = arrayOf<Any>( // array of Color options
+val arrayOfColorOptions = arrayOf<Any>(
     "Colorless",
     "Near Colorless",
     "Faint",
     "Very Light",
     "Light"
 )
-val optionCol = JComboBox(optionColor)
+val colorCombo = JComboBox(arrayOfColorOptions)
 
-val optionCut = arrayOf<Any>( // array of Cut options
+val arrayOfCutOptions = arrayOf<Any>(
     "Ideal (Round)",
     "Premium (Princess)",
     "Very good (Marquise)",
     "Good (Pear)",
     "Fair (Emerald)"
 )
-val optionCuts = JComboBox(optionCut)
+val cutCombo = JComboBox(arrayOfCutOptions)
 
 fun main() {
     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()) // L&F
-    val arrMain: Array<String> = arrayOf("New","Search diamond","Modify","Delete","Exit") // main menus
-    val icon = ImageIcon("src/diamond.png") // icon
+    val arrayOfMainMenu: Array<String> = arrayOf("New","Search diamond","Modify","Delete","Exit")
+    val icon = ImageIcon("src/diamond.png")
 
     // Main menu loop
     do {
-    val x = JOptionPane.showOptionDialog(null, "Welcome to Diamonds EPN, please select an option",
-        "Diamonds EPN", 1,3,icon,arrMain,null ) // menu options
-        when (x) {
-            0 -> { // add new diamond
-                add()
+    val selectedOption = JOptionPane.showOptionDialog(null, "Welcome to Diamonds EPN, please select an option",
+        "Diamonds EPN", 1,3,icon,arrayOfMainMenu,null ) // menu options
+        when (selectedOption) {
+            0 -> {
+                addNewDiamondToBD()
             }
-            1 -> { // search any diamond
-                find()
+            1 -> {
+                findDiamondbyCategory()
             }
-            2 -> { // change any diamond
-                modify()
+            2 -> {
+                modifyAnyDiamond()
             }
-            3 -> { // deete any diamond
-                val paramName = JOptionPane.showInputDialog(null,"Diamond's Name: ")
-                delete(paramName, true)
+            3 -> {
+                val nameOfDiamondToDelete = JOptionPane.showInputDialog(null,"Diamond's Name: ")
+                deleteAnyDiamond(nameOfDiamondToDelete, true)
             }
-            4 -> { // close the program
+            4 -> {
                 System.exit(0)
             }
         }
-    }while (x in 0..4)
+    }while (selectedOption in 0..4)
 }
 
-// Add new diamond to BDD
-fun add(){
-    val listaDiamantes = ArrayList<DiamanteBDD>() // Lista de diamantes
+fun addNewDiamondToBD(){
+    val listOfDiamondsToAdd = ArrayList<DiamondBDD>() // Lista de diamantes
     do{
-        var ok = false
-        var ok2 = false
-        var ok3 = false
-        val diamond = DiamanteBDD() // instancia de diamante
+        var isAvalidName = false
+        var isAvalidCarat = false
+        var isAvalidPrice = false
+        val newDiamond = DiamondBDD()
 
         // get name
-        while (!ok){
-            val name = JOptionPane.showInputDialog(null,"Name:")
-            if(name.matches("".toRegex())){
+        while (!isAvalidName){
+            val diamondName = JOptionPane.showInputDialog(null,"Name of the new diamond:")
+            if(diamondName.matches("".toRegex())){
                 JOptionPane.showMessageDialog(null,"Non valid input","Error",0,null)
             }else{
-                diamond.name = name
-                ok = true //finish loop
+                newDiamond.name = diamondName
+                isAvalidName = true //finish loop
             }
         }
         // get clarity
-        JOptionPane.showMessageDialog(null, optionClar, "Select diamond clarity",JOptionPane.QUESTION_MESSAGE)
-        diamond.clarity = optionClar.selectedItem.toString()
+        JOptionPane.showMessageDialog(null, clarityCombo, "Select diamond clarity",JOptionPane.QUESTION_MESSAGE)
+        newDiamond.clarity = clarityCombo.selectedItem.toString()
 
         // get color
-        JOptionPane.showMessageDialog(null, optionCol, "Select diamond color",JOptionPane.QUESTION_MESSAGE)
-        diamond.color = optionCol.selectedItem.toString()
+        JOptionPane.showMessageDialog(null, colorCombo, "Select diamond color",JOptionPane.QUESTION_MESSAGE)
+        newDiamond.color = colorCombo.selectedItem.toString()
 
         // get cut
-        JOptionPane.showMessageDialog(null, optionCuts, "Select diamond cut",JOptionPane.QUESTION_MESSAGE)
-        diamond.cut = optionCuts.selectedItem.toString()
+        JOptionPane.showMessageDialog(null, cutCombo, "Select diamond cut",JOptionPane.QUESTION_MESSAGE)
+        newDiamond.cut = cutCombo.selectedItem.toString()
 
         // get carat
-        while (!ok2){
-            val carat = JOptionPane.showInputDialog(null,"Carat:")
-            if(carat.matches("\\d+(\\.\\d+)?".toRegex())){
-                diamond.carat = carat
-                ok2 = true
+        while (!isAvalidCarat){
+            val newCarat = JOptionPane.showInputDialog(null,"Carat:")
+            if(newCarat.matches("\\d+(\\.\\d+)?".toRegex())){
+                newDiamond.carat = newCarat
+                isAvalidCarat = true
             }else{
                 JOptionPane.showMessageDialog(null,"Non valid input","Error",0,null)
             }
         }
         // get price
-        while (!ok3){
-            val price = JOptionPane.showInputDialog(null,"Price:")
-            if(price.matches("\\d+(\\.\\d+)?".toRegex())){
-                diamond.price = price
-                ok3 = true
+        while (!isAvalidPrice){
+            val newPrice = JOptionPane.showInputDialog(null,"Price:")
+            if(newPrice.matches("\\d+(\\.\\d+)?".toRegex())){
+                newDiamond.price = newPrice
+                isAvalidPrice = true
             }else{
                 JOptionPane.showMessageDialog(null,"Non valid input","Error",0,null)
             }
         }
-        listaDiamantes.add(diamond) // añade el diamante a la lista
-        val sw = JOptionPane.showConfirmDialog(null, "Add more diamonds?")
-    } while (sw == JOptionPane.YES_OPTION)
-    // Writing on file
-    DiamanteBDD.addDiamond(listaDiamantes) // Arraylist to file
-    var items = "" // Sumarize new items
-    listaDiamantes.forEach {
-        items +="Name: ${it.name}\nClarity: ${it.clarity}\nColor: ${it.color}\n" +
-                "Cut: ${it.cut}\nCarat: ${it.carat}        Price: ${it.price}\n\n"
+        listOfDiamondsToAdd.add(newDiamond)
+        val selectedOption = JOptionPane.showConfirmDialog(null, "Add more diamonds?")
+    } while (selectedOption == JOptionPane.YES_OPTION)
+
+    DiamondBDD.addDiamond(listOfDiamondsToAdd)
+
+    var stringOfDiamondsToShow = ""
+    listOfDiamondsToAdd.forEach { eachDiamOfList ->
+        stringOfDiamondsToShow +="Name: ${eachDiamOfList.name}\nClarity: ${eachDiamOfList.clarity}\nColor: ${eachDiamOfList.color}\n" +
+                "Cut: ${eachDiamOfList.cut}\nCarat: ${eachDiamOfList.carat}        Price: ${eachDiamOfList.price}\n\n"
     }
-    showText(items)
+    showDiamondsInTextArea(stringOfDiamondsToShow)
 }
 
-fun find(){
-    val arrFind: Array<String> = arrayOf("View all","Filter by..","Return to menu")
+fun findDiamondbyCategory(){
+    val arrayOfMenu1: Array<String> = arrayOf("View all","Filter by...","Return to menu")
     do{
-        var x = JOptionPane.showOptionDialog(null, "Diamonds catalog, please select an option",
-            "Diamonds EPN", 1,3,null,arrFind,null )
-        when (x) {
+        var selectedOption = JOptionPane.showOptionDialog(null, "Diamonds catalog, please select an option",
+            "Diamonds EPN", 1,3,null,arrayOfMenu1,null )
+        when (selectedOption) {
             0 -> { // show all
-                var items = "" // Sumarize new items
-                var cont = 0
-                DiamanteBDD.listarDiamantes().forEach {
-                    items +="Name: ${it.name}\nClarity: ${it.clarity}\nColor: ${it.color}\n" +
-                            "Cut: ${it.cut}\nCarat: ${it.carat}        Price: ${it.price}\n\n"
-                    cont++
+                var stringOfDiamondsToShow = ""
+                var diamondCounter = 0
+                DiamondBDD.showAllDiamondsFromFile().forEach { eachDiamond ->
+                    stringOfDiamondsToShow+="Name: ${eachDiamond.name}\nClarity: ${eachDiamond.clarity}\nColor: ${eachDiamond.color}\n" +
+                            "Cut: ${eachDiamond.cut}\nCarat: ${eachDiamond.carat}        Price: ${eachDiamond.price}\n\n"
+                    diamondCounter++
                 }
-                println(items)
-                showText("$items \nTotal diamonds = $cont")
+                showDiamondsInTextArea("$ \nTotal diamonds = $diamondCounter")
 
             }
             1 -> { // filter by category
-                val arrFilter: Array<String> = arrayOf("by Name","by Clarity","by Color","by Cut","Volver al menú")
+                val arryOfSubmenu1: Array<String> = arrayOf("by Name","by Clarity","by Color","by Cut","Volver al menú")
                 do {
-                    var y = JOptionPane.showOptionDialog(null, "Filtering diamonds, please select an option",
-                        "Diamonds EPN", 1,3,null,arrFilter,null )
-                    when(y){
+                    var seletecOption = JOptionPane.showOptionDialog(null, "Filtering diamonds, please select an option",
+                        "Diamonds EPN", 1,3,null,arryOfSubmenu1,null )
+                    when(seletecOption){
                         0 -> { // by Name
                             val name = JOptionPane.showInputDialog(null,"Diamond's Name: ")
-                            showFind(name)
+                            showDiamondsFounded(name)
                         }
                         1 -> { // by clarity
-                            JOptionPane.showMessageDialog(null, optionClar, "Select diamond clarity",JOptionPane.QUESTION_MESSAGE)
-                            showFind(optionClar.selectedItem.toString())
+                            JOptionPane.showMessageDialog(null, clarityCombo, "Select diamond clarity",JOptionPane.QUESTION_MESSAGE)
+                            showDiamondsFounded(clarityCombo.selectedItem.toString())
                         }
                         2 -> { // by color
-                            JOptionPane.showMessageDialog(null, optionCol, "Select diamond color",JOptionPane.QUESTION_MESSAGE)
-                            showFind(optionCol.selectedItem.toString())
+                            JOptionPane.showMessageDialog(null, colorCombo, "Select diamond color",JOptionPane.QUESTION_MESSAGE)
+                            showDiamondsFounded(colorCombo.selectedItem.toString())
                         }
                         3 -> { // by cut
-                            JOptionPane.showMessageDialog(null, optionCuts, "Select diamond cut",JOptionPane.QUESTION_MESSAGE)
-                            showFind(optionCuts.selectedItem.toString())
+                            JOptionPane.showMessageDialog(null, cutCombo, "Select diamond cut",JOptionPane.QUESTION_MESSAGE)
+                            showDiamondsFounded(cutCombo.selectedItem.toString())
                         }
                         4 -> { // breaking loop
-                            y = 5
+                            seletecOption = 5
                         }
                     }
-                }while (y in 0..4)
+                }while (seletecOption in 0..4)
             }
             2 -> { // finishing loop
-               x = 3
+               selectedOption = 3
             }
         }
-    }while (x in 0..2)
+    }while (selectedOption in 0..2)
 }
 
 // Actualizr un diamante, buscándolo por su nombre
-fun modify(){
-    val paramName = JOptionPane.showInputDialog(null,"Diamond's Name: ").trim()
-    val diamondToModify = DiamanteBDD.searchBy(paramName)
+fun modifyAnyDiamond(){
+    val diamondName = JOptionPane.showInputDialog(null,"Diamond's Name: ").trim()
+    val diamondToModify = DiamondBDD.searchDiamondByCategory(diamondName)
     if (diamondToModify != null) {
-        val arrCar: Array<String> = arrayOf("Change Name","Change Clarity","Change Color","Change Cut","Change Carat","Change Price")
-        delete(paramName, false) // Borra la linea del diamante a modificar
-        when(JOptionPane.showOptionDialog(null, "Modifying '$paramName' diamond, please select an option",
-            "Diamonds EPN", 1,3,null,arrCar,null )){
+        val arrayOfSubmenu2: Array<String> = arrayOf("Change Name","Change Clarity","Change Color","Change Cut","Change Carat","Change Price")
+        deleteAnyDiamond(diamondName, false) // Borra la linea del diamante a modificar
+        when(JOptionPane.showOptionDialog(null, "Modifying '$diamondName' diamond, please select an option",
+            "Diamonds EPN", 1,3,null,arrayOfSubmenu2,null )){
             0 -> { // Change name
                 diamondToModify[0].name = JOptionPane.showInputDialog(null,"New Name: ")
             }
             1 -> { // Change clarity
-                JOptionPane.showMessageDialog(null, optionClar, "Select new Clarity:",JOptionPane.QUESTION_MESSAGE)
-                diamondToModify[0].clarity = optionClar.selectedItem.toString()
+                JOptionPane.showMessageDialog(null, clarityCombo, "Select new Clarity:",JOptionPane.QUESTION_MESSAGE)
+                diamondToModify[0].clarity = clarityCombo.selectedItem.toString()
             }
             2 -> { // Change Color
-                JOptionPane.showMessageDialog(null, optionCol, "Select new Color:",JOptionPane.QUESTION_MESSAGE)
-                diamondToModify[0].color = optionCol.selectedItem.toString()
+                JOptionPane.showMessageDialog(null, colorCombo, "Select new Color:",JOptionPane.QUESTION_MESSAGE)
+                diamondToModify[0].color = colorCombo.selectedItem.toString()
             }
             3 -> { // Change Cut
-                JOptionPane.showMessageDialog(null, optionCuts, "Select new Cut:",JOptionPane.QUESTION_MESSAGE)
-                diamondToModify[0].cut = optionCuts.selectedItem.toString()
+                JOptionPane.showMessageDialog(null, cutCombo, "Select new Cut:",JOptionPane.QUESTION_MESSAGE)
+                diamondToModify[0].cut = cutCombo.selectedItem.toString()
             }
             4 -> { // Change carat
                 diamondToModify[0].carat = JOptionPane.showInputDialog(null,"New Carat: ")
@@ -211,66 +210,66 @@ fun modify(){
                 diamondToModify[0].price = JOptionPane.showInputDialog(null,"New Price: ")
             }
         }
-        var items = ""
+        var stringOfDiamondsToShow = ""
         diamondToModify.forEach { item ->
-            items +="Name: ${item.name}\nClarity: ${item.clarity}\nColor: ${item.color}\n" +
+            stringOfDiamondsToShow +="Name: ${item.name}\nClarity: ${item.clarity}\nColor: ${item.color}\n" +
                     "Cut: ${item.cut}\nCarat: ${item.carat}        Price: ${item.price}\n\n"
         }
-        showText(items)
+        showDiamondsInTextArea(stringOfDiamondsToShow)
       //  println(items)
-        DiamanteBDD.addDiamond(diamondToModify as ArrayList<DiamanteBDD>)
+        DiamondBDD.addDiamond(diamondToModify as ArrayList<DiamondBDD>)
     }else{
-        JOptionPane.showMessageDialog(null,"$paramName no esta registrado")
+        JOptionPane.showMessageDialog(null,"$diamondName not found")
     }
 }
 
 // Delete diamonds
-fun delete(paramName: String, ok: Boolean){
-    val diamondToDelete = DiamanteBDD.searchBy(paramName) // Averiguamos si existe
-    val newList = ArrayList<DiamanteBDD>() // Nueva lista generada
+fun deleteAnyDiamond(paramName: String, showChanges: Boolean){
+    val diamondToDelete = DiamondBDD.searchDiamondByCategory(paramName) // Averiguamos si existe
+    val listOfDiamondsToSave = ArrayList<DiamondBDD>() // Nueva lista generada
     if (diamondToDelete != null) {
-        DiamanteBDD.listarDiamantes().forEach {
+        DiamondBDD.showAllDiamondsFromFile().forEach {
             if(it.name != diamondToDelete[0].name){
-                newList.add(it) // Se excluye al elemento eliminado
+                listOfDiamondsToSave.add(it) // Se excluye al elemento eliminado
             }
         }
         // Print new List without deleted diamond
-        var items = ""
-        var text = ""
-        newList.forEach { item ->
-            items +="Name: ${item.name}\nClarity: ${item.clarity}\nColor: ${item.color}\n" +
-                    "Cut: ${item.cut}\nCarat: ${item.carat}        Price: ${item.price}\n\n"
-            text+="${item.name};${item.clarity};${item.color};${item.cut};${item.carat};${item.price}\n"
+        var stringOfDiamondsToShow = ""
+        var lineOfDiamondsToWriteinFile = ""
+        listOfDiamondsToSave.forEach { eachDiamond ->
+            stringOfDiamondsToShow +="Name: ${eachDiamond.name}\nClarity: ${eachDiamond.clarity}\nColor: ${eachDiamond.color}\n" +
+                    "Cut: ${eachDiamond.cut}\nCarat: ${eachDiamond.carat}        Price: ${eachDiamond.price}\n\n"
+            lineOfDiamondsToWriteinFile+="${eachDiamond.name};${eachDiamond.clarity};${eachDiamond.color};${eachDiamond.cut};${eachDiamond.carat};${eachDiamond.price}\n"
         }
-            // Sobreescribiendo el archivo
+
         try {
-            val file = FileWriter("src/texto.csv")
-            file.write(text)
-            file.close()
+            val newFileOfDiamonds = FileWriter("src/texto.csv")
+            newFileOfDiamonds.write(lineOfDiamondsToWriteinFile)
+            newFileOfDiamonds.close()
         }catch (e: IOException){
-            println("No se puede leer")
+            println("Cannot read")
         }
-        if(ok){ // Si y solo si es llamado exclusivamente para borrar
-            showText(items)
+        if(showChanges){
+            showDiamondsInTextArea(stringOfDiamondsToShow)
         }
     }
 }
 
 // Muestra los resultados de la búsqueda
-fun showFind(param: String){
+fun showDiamondsFounded(categoryDiamond: String){
     var items = ""
     var cont = 0
-    DiamanteBDD.searchBy(param)?.forEach { item ->
-        items +="Name: ${item.name}\nClarity: ${item.clarity}\nColor: ${item.color}\n" +
-                "Cut: ${item.cut}\nCarat: ${item.carat}        Price: $ ${item.price}\n\n"
+    DiamondBDD.searchDiamondByCategory(categoryDiamond)?.forEach { eachDiamond ->
+        items +="Name: ${eachDiamond.name}\nClarity: ${eachDiamond.clarity}\nColor: ${eachDiamond.color}\n" +
+                "Cut: ${eachDiamond.cut}\nCarat: ${eachDiamond.carat}        Price: $ ${eachDiamond.price}\n\n"
         cont++
     }
-    showText("$items \nTotal diamonds = $cont")
+    showDiamondsInTextArea("$items \nTotal diamonds = $cont")
 }
 
 // Show results in JTextArea over JOptionPane
-fun showText(items: String){
-    val txt = JTextArea(items)
+fun showDiamondsInTextArea(stringOfDiamonds: String){
+    val txt = JTextArea(stringOfDiamonds)
     val scr = JScrollPane(txt)
     txt.font = Font("Tahoma", PLAIN, 11)
     txt.isEditable = false
