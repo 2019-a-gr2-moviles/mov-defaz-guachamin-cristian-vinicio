@@ -44,11 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="267" column="1" lean-forward="true" selection-start-line="267" selection-start-column="1" selection-end-line="267" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#147#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -56,17 +53,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Diamond.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-55">
-              <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+            <state relative-caret-position="272">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/texto.csv">
+        <entry file="file://$PROJECT_DIR$/src/DiamondDatabase.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+            <state relative-caret-position="221">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -100,7 +97,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="23" />
     <option name="y" value="168" />
     <option name="width" value="1523" />
@@ -112,8 +109,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -130,6 +125,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -221,11 +218,13 @@
       <workItem from="1557095614095" duration="5570000" />
       <workItem from="1557191790775" duration="433000" />
       <workItem from="1557199446272" duration="829000" />
+      <workItem from="1557551192194" duration="176000" />
+      <workItem from="1557619671368" duration="7561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102831000" />
+    <option name="totallyTimeSpent" value="110568000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -237,10 +236,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="168" width="1523" height="1100" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4982699" visible="true" weight="0.17150573" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4982699" visible="true" weight="0.17700455" />
       <window_info id="Structure" order="1" sideWeight="0.5017301" side_tool="true" weight="0.20045386" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -331,27 +330,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pruebas.kt" />
-    <entry file="file://$PROJECT_DIR$/src/texto.csv">
+    <entry file="file://$PROJECT_DIR$/src/DiamondDatabase.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Diamond.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-55">
-          <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+        <state relative-caret-position="272">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="267" column="1" lean-forward="true" selection-start-line="267" selection-start-column="1" selection-end-line="267" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#147#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>
