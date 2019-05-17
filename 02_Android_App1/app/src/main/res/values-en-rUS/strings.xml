@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">I hate you Android Studio !!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hola_mundo">Hello world :)</string>
+</resources>
