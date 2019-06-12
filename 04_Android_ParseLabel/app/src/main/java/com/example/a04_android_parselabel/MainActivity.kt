@@ -21,20 +21,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun irAParcelable(){
+    private fun irAParcelable(){
+
         val intentExplicito = Intent(
             this,
             Parcelable::class.java
         )
         val criss = Usuario("Criss",25, Date(),12.12)
         intentExplicito.putExtra("usuario",criss)
+
+
             /////////
         val cachetes = Mascota("cachetes",criss)
         intentExplicito.putExtra("mascota",cachetes)
         startActivity(intentExplicito)
     }
 
-    fun irAListaView(){
+    private fun irAListaView(){
         val intentExplicito = Intent(
             this,
             ListViewActivity::class.java
