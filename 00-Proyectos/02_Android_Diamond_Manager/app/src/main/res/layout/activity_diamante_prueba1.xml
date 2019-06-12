@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".DiamantePrueba1" android:background="@drawable/diam_wall">
+
+    <Button
+            android:text="@string/lb_btn_gallery"
+            android:layout_width="252dp"
+            android:layout_height="58dp"
+            android:id="@+id/btn_gallery" android:backgroundTint="#25E7DFDF"
+            android:textColor="#BFFFFFFF"
+            app:layout_constraintStart_toStartOf="@+id/btn_manager"
+            app:layout_constraintEnd_toEndOf="@+id/btn_manager" android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_manager" app:layout_constraintHorizontal_bias="0.0"/>
+    <Button
+            android:text="@string/lbl_btn_manager"
+            android:layout_width="252dp"
+            android:layout_height="58dp"
+            android:id="@+id/btn_manager" android:backgroundTint="#25E7DFDF"
+            android:textColor="#BFFFFFFF" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintVertical_bias="0.768"/>
+</android.support.constraint.ConstraintLayout>

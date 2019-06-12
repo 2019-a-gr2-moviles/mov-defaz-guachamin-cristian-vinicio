@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Examen_App_Pokemon</string>
+    <string name="action_settings">Configuración</string>
+    <string name="str_nom_ini">Ingrese su nombre:</string>
+    <string name="str_btn_ini">Entrar:</string>
+    <string name="str_btn_trainer">Gestionar Entrenador</string>
+    <string name="str_btn_pokemon">Crear Entrenador</string>
+    <string name="lbl_nombre_entrenador">Nombres:</string>
+    <string name="lbl_apellidos_entrenador">Apellidos:</string>
+    <string name="lbl_Fecha_Nac">Fecha:</string>
+    <string name="lbl_num_medallas">Número de medallas:</string>
+    <string name="lbl_nom_pokemon">Nombre pokemon:</string>
+    <string name="lbl_poder_esp_uno">Poder especial 1:</string>
+    <string name="lbl_poder_esp_dos">Poder especial 2:</string>
+    <string name="lbl_fecha_captura">Fecha de captura:</string>
+    <string name="lbl_nivel">Nivel:</string>
+    <string name="str_guardar">Guardar</string>
+    <string name="lbl_num_pokemon">Nombre Pokemon:</string>
+    <string name="num_pokemon">Num. Pokemon:</string>
+    <string name="lbl_num_entrenador">Num entrenador:</string>
+    <string name="lbl_campeon">Campeón actual?</string>
+    <string name="str_eliminarEnt">Eliminar</string>
+    <string name="str_gestionarPok">Gestionar Pokemon</string>
+    <string name="str_crearPokemon">Crear Pokemon</string>
+    <string name="str_actualizarEnt">Actualizar</string>
+    <string name="lbl_id_entrenador">id  Entrenador</string>
+    <string name="lbl_listaEntrenadores">Lista de Entrenadores</string>
+    <string name="lbl_listaPokemon">Lista de Pokemones Entrenados</string>
+</resources>

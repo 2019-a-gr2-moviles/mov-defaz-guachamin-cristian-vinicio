@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lbl_btn_login">Login</string>
+    <string name="lbl_txt_userLogin">Username:</string>
+    <string name="lbl_txt_passwd">Password:</string>
+    <string name="image_desc">user image</string>
+    <string name="lbl_btn_manager">Diamond manage</string>
+    <string name="lb_btn_gallery">View Gallery</string>
+    <string name="lbl_list_listafav">List of Favourite Songs</string>
+</resources>

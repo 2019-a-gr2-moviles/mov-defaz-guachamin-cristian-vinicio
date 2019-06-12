@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">Diamond Manager</string>
+    <string name="lbl_btn_login">Iniciar Sesión</string>
+    <string name="lbl_txt_userLogin">Usuario:</string>
+    <string name="lbl_txt_passwd">Contraseña</string>
+    <string name="image_desc">imagen usuario</string>
+    <string name="lbl_btn_manager">Gestión de diamantes</string>
+    <string name="lb_btn_gallery">Ver Galería</string>
+    <string name="lbl_list_listafav">Lista de canciones favoritas</string>
+</resources>

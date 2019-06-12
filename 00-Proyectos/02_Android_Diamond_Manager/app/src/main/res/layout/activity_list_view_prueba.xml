@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".ListViewPrueba" android:background="@drawable/login">
+
+    <ListView
+            android:layout_width="367dp"
+            android:layout_height="453dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.591" android:id="@+id/lv_list"/>
+    <TextView
+            android:text="@string/lbl_list_listafav"
+            android:layout_width="224dp"
+            android:layout_height="34dp"
+            android:id="@+id/textView2"
+            tools:ignore="UnknownId"
+            app:layout_constraintStart_toStartOf="@+id/lv_list" app:layout_constraintEnd_toEndOf="@+id/_dynamic"
+            android:layout_marginStart="68dp"
+            android:fontFamily="sans-serif"
+            android:textAlignment="center" android:layout_marginBottom="28dp"
+            app:layout_constraintBottom_toTopOf="@+id/lv_list"/>
+</android.support.constraint.ConstraintLayout>
