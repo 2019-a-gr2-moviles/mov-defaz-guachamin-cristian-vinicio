@@ -40,7 +40,7 @@ class ListViewActivity : AppCompatActivity() {
 
     }
     // Mostrar un snckbar con el nombre y la posición
-    fun mostrarSnackbar(view: View, texto:String){
+    private fun mostrarSnackbar(view: View, texto:String){
         Snackbar.make(view, texto, Snackbar.LENGTH_LONG)
             .setAction("Action",null).show()
         //Snackbar.make
