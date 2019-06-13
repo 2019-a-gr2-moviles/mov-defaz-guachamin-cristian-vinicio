@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">05_Layouts_RecyclerView</string>
+    <string name="title_activity_intent_respuesta">IntentRespuestaActivity</string>
+</resources>
