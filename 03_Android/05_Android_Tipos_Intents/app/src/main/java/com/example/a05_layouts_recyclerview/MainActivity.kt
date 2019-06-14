@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun irAIntentRespusta(){
+    private fun irAIntentRespusta(){
         val intentExplicito = Intent(
             this,
             IntentRespuestaActivity::class.java
