@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_intent_respuesta.*
 
@@ -23,14 +23,14 @@ class IntentRespuestaActivity : AppCompatActivity() {
         }
     }
 
-    fun enviarIntentConRespuestPropia(){
+    private fun enviarIntentConRespuestPropia(){
         val intentPropio = Intent(
             this,
             ResultadoPropioActivity::class.java)
         this.startActivityForResult(intentPropio, 305)
     }
 
-    fun enviarIntentConRespuesta(){
+    private fun enviarIntentConRespuesta(){
         val intentConRespuesta = Intent(
             Intent.ACTION_PICK,
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI
@@ -52,14 +52,14 @@ class IntentRespuestaActivity : AppCompatActivity() {
                     304 ->{
                         Log.i("intent-respuesta","CONTACTO LLEGÓ !")
                         val uri = data?.data
-                        val cursor = contentResolver.query(uri,
+                        val cursor = contentResolver.query(uri!!,
                             null,
                             null,
                             null,
                             null
                             )
-                        cursor.moveToFirst()
-                        val indiceTelefono = cursor.getColumnIndex(
+                        cursor?.moveToFirst()
+                        val indiceTelefono = cursor?.getColumnIndex(
                             ContactsContract.CommonDataKinds.Phone.NUMBER
                         )
                         val telefono = cursor?.getString(indiceTelefono!!)

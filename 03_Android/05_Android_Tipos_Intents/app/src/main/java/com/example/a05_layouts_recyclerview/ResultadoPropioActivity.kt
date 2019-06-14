@@ -17,7 +17,7 @@ class ResultadoPropioActivity : AppCompatActivity() {
         }
     }
 
-    fun devolverRespuesta(){
+    private fun devolverRespuesta(){
         val nombre = "Criss"
         val edad = 25
         val intentRespuesta = Intent()
@@ -25,7 +25,7 @@ class ResultadoPropioActivity : AppCompatActivity() {
         intentRespuesta.putExtra("edadUsuario", edad)
 
         this.setResult(
-            Activity.RESULT_OK,
+            Activity.RESULT_OK, // Podemos enviar RESULT_OK o RESULT_CANCELED
             intentRespuesta
         )
 
