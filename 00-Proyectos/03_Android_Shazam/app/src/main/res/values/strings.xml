@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Shazam</string>
+    <string name="lbl_shazamear">Pulsa para shazamear</string>
+    <string name="lbl_mishazam">Mi Shazam</string>
+    <string name="lbl_listarCanciones">Tus shazams</string>
+    <string name="lbl_play">Reproducir Todo</string>
+    <string name="lbl_titulo">Título</string>
+    <string name="lbl_artista">Artista</string>
+    <string name="lbl_Album">Álbum</string>
+</resources>

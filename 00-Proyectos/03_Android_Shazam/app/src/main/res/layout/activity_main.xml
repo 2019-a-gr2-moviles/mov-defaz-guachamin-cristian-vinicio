@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent" android:background="#0987F4"
+                                             android:backgroundTintMode="screen" tools:context=".MainActivity"
+>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/shazam"
+            android:id="@+id/btn_shazam" android:backgroundTint="#00FFFFFF" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.41"
+            android:contentDescription="@string/lbl_shazamear"/>
+    <TextView
+            android:text="@string/lbl_shazamear"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:id="@+id/txt_shazam" app:layout_constraintStart_toStartOf="@+id/btn_shazam"
+            app:layout_constraintEnd_toEndOf="@+id/btn_shazam" android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_shazam"
+            android:textColor="#F7F2F2" android:textSize="18sp"/>
+    <ImageButton
+            android:layout_width="44dp"
+            android:layout_height="37dp" app:srcCompat="@drawable/music_heart"
+            android:id="@+id/imageButton17"
+            android:backgroundTint="#02FFFFFF"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.056"
+            android:tint="#FAFFFFFF" android:contentDescription="@string/lbl_mishazam"/>
+    <TextView
+            android:text="@string/lbl_mishazam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_mi_shazam" app:layout_constraintStart_toStartOf="@+id/imageButton17"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton17"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton17" android:textColor="#FFFFFF"
+            app:layout_constraintHorizontal_bias="0.461" android:textSize="12sp"/>
+</android.support.constraint.ConstraintLayout>
