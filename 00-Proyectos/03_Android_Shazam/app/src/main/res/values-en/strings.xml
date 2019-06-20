@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shazam</string>
+    <string name="lbl_shazamear">Press to shazam</string>
+    <string name="lbl_mishazam">My Shazam</string>
+    <string name="lbl_listarCanciones">Your shazams</string>
+    <string name="lbl_play">Play All</string>
+    <string name="lbl_titulo">Title:</string>
+    <string name="lbl_artista">Artist</string>
+    <string name="lbl_Album">Abum</string>
+</resources>
