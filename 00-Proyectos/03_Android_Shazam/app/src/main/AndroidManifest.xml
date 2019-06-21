@@ -12,6 +12,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ActividadEscucha">
+        </activity>
+        <activity android:name=".VerCancion">
+        </activity>
         <activity android:name=".MusicaRecyclerView">
         </activity>
         <activity android:name=".AdaptadorCancion">

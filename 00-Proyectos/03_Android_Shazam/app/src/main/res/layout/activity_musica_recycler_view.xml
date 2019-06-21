@@ -5,20 +5,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MusicaRecyclerView">
+        tools:context=".MusicaRecyclerView" android:background="@drawable/images">
 
     <TextView
             android:text="@string/lbl_listarCanciones"
-            android:layout_width="197dp"
-            android:layout_height="38dp"
-            android:id="@+id/txt_titulo" android:textSize="30sp" app:layout_constraintEnd_toEndOf="@+id/btn_play"
+            android:layout_width="219dp"
+            android:layout_height="36dp"
+            android:id="@+id/txt_titulo" android:textSize="24sp" app:layout_constraintEnd_toEndOf="@+id/btn_play"
             android:layout_marginEnd="8dp"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawablePadding="5dp"
             app:layout_constraintStart_toStartOf="@+id/btn_play"
-            app:layout_constraintBottom_toTopOf="@+id/btn_play" app:layout_constraintHorizontal_bias="0.428"
-            android:layout_marginBottom="12dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/btn_play" app:layout_constraintHorizontal_bias="0.47"
+            android:layout_marginBottom="4dp" android:textAlignment="center" android:textStyle="bold|italic"
+            android:textAllCaps="false"/>
     <android.support.v7.widget.RecyclerView
-            android:layout_width="369dp"
-            android:layout_height="590dp"
+            android:layout_width="372dp"
+            android:layout_height="531dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
@@ -28,8 +31,18 @@
             android:text="@string/lbl_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_play_arrow_black_24dp"
+            android:drawablePadding="5dp"
             android:id="@+id/btn_play" app:layout_constraintStart_toStartOf="@+id/rv_canciones"
             app:layout_constraintEnd_toEndOf="@+id/rv_canciones"
             app:layout_constraintBottom_toTopOf="@+id/rv_canciones" app:layout_constraintHorizontal_bias="0.477"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" android:backgroundTint="#43FFFFFF"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            android:id="@+id/btn_volver"
+            android:tint="#00FFFFFF" android:backgroundTint="#00FFFFFF" android:contentDescription="@string/lbl_atras"
+            app:layout_constraintTop_toTopOf="@+id/txt_titulo"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_titulo" android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/txt_titulo"/>
 </android.support.constraint.ConstraintLayout>

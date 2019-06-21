@@ -3,30 +3,31 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
-                                             android:layout_height="match_parent" android:background="#0987F4"
+                                             android:layout_height="match_parent"
                                              android:backgroundTintMode="screen" tools:context=".MainActivity"
->
+                                             android:background="@drawable/blur5">
     <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/shazam"
+            android:layout_width="256dp"
+            android:layout_height="256dp" app:srcCompat="@drawable/boton_animado"
             android:id="@+id/btn_shazam" android:backgroundTint="#00FFFFFF" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.41"
-            android:contentDescription="@string/lbl_shazamear"/>
+            app:layout_constraintHorizontal_bias="0.497"
+            android:contentDescription="@string/lbl_shazamear" app:layout_constraintVertical_bias="0.555"/>
     <TextView
             android:text="@string/lbl_shazamear"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:id="@+id/txt_shazam" app:layout_constraintStart_toStartOf="@+id/btn_shazam"
-            app:layout_constraintEnd_toEndOf="@+id/btn_shazam" android:layout_marginBottom="24dp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_shazam" android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_shazam"
-            android:textColor="#F7F2F2" android:textSize="18sp"/>
+            android:textColor="#F7F2F2" android:textSize="18sp" android:textStyle="bold"
+            android:fontFamily="sans-serif-light"/>
     <ImageButton
             android:layout_width="44dp"
             android:layout_height="37dp" app:srcCompat="@drawable/music_heart"
-            android:id="@+id/imageButton17"
+            android:id="@+id/btn_miShazam"
             android:backgroundTint="#02FFFFFF"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="20dp"
@@ -36,8 +37,26 @@
             android:text="@string/lbl_mishazam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lbl_mi_shazam" app:layout_constraintStart_toStartOf="@+id/imageButton17"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton17"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton17" android:textColor="#FFFFFF"
-            app:layout_constraintHorizontal_bias="0.461" android:textSize="12sp"/>
+            android:id="@+id/lbl_mi_shazam" app:layout_constraintStart_toStartOf="@+id/btn_miShazam"
+            app:layout_constraintEnd_toEndOf="@+id/btn_miShazam"
+            app:layout_constraintTop_toBottomOf="@+id/btn_miShazam" android:textColor="#FFFFFF"
+            app:layout_constraintHorizontal_bias="0.461" android:textSize="12sp" android:textStyle="bold"/>
+    <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="31dp" app:srcCompat="@drawable/ic_public_black_24dp"
+            android:id="@+id/imageButton"
+            android:backgroundTint="#05FFFFFF" android:tint="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/btn_miShazam" android:layout_marginStart="264dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/lbl_mi_shazam"
+            app:layout_constraintTop_toTopOf="@+id/btn_miShazam" app:layout_constraintVertical_bias="0.0"
+            android:contentDescription="@string/lbl_descubre"/>
+    <TextView
+            android:text="@string/lbl_descubre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_discover" android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" app:layout_constraintHorizontal_bias="0.473"
+            android:layout_marginTop="4dp" android:textStyle="bold"/>
 </android.support.constraint.ConstraintLayout>

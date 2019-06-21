@@ -5,20 +5,22 @@ import android.os.Parcelable
 
 class ParcelableMusica (
     val titulo: String,
-    val autor: String,
-    val album: String):Parcelable
-{
+    val artista: String,
+    val album: String,
+    val idCancion: Int):Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!
-
+        parcel.readString()!!,
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(titulo)
-        parcel.writeString(autor)
+        parcel.writeString(artista)
         parcel.writeString(album)
+        parcel.writeInt(idCancion)
     }
 
     override fun describeContents(): Int {
@@ -34,6 +36,4 @@ class ParcelableMusica (
             return arrayOfNulls(size)
         }
     }
-
-
 }

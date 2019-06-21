@@ -3,9 +3,18 @@
     <string name="app_name">Shazam</string>
     <string name="lbl_shazamear">Press to shazam</string>
     <string name="lbl_mishazam">My Shazam</string>
-    <string name="lbl_listarCanciones">Your shazams</string>
+    <string name="lbl_listarCanciones">Criss\' Shazams</string>
     <string name="lbl_play">Play All</string>
     <string name="lbl_titulo">Title:</string>
     <string name="lbl_artista">Artist</string>
     <string name="lbl_Album">Abum</string>
+    <string name="lbl_caratula">Album Cover</string>
+    <string name="lbl_letra">Lyrics</string>
+    <string name="lbl_video">Video</string>
+    <string name="lbl_cancion">Song</string>
+    <string name="lbl_atras">Back</string>
+    <string name="lbl_compartir">Share</string>
+    <string name="lbl_pie">Footer</string>
+    <string name="lbl_descubre">Discover</string>
+    <string name="lbl_escucha">Listenning...</string>
 </resources>
