@@ -55,7 +55,15 @@ module.exports = {
     correo: {
       type: 'string',
       isEmail: true
+    },
+
+    // Configuración del papá
+    serviciosDeUsuario: { // Nombre de atributo de la relación.
+      collection: 'servicio', // Nombre del modelo a relacionar
+      via: 'fkUsuario' // Nombre del atributo FK del otro modelo, es el campo para hacer la relación
     }
+
+
   },
 };
 
