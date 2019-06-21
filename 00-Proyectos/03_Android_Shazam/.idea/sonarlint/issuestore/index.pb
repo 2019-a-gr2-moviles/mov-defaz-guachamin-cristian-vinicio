@@ -13,3 +13,7 @@ h
 8app/src/main/java/com/example/shazam/ActividadEscucha.kt,9\a\9ab760bedd823b0e31fd6c3534dbca397269eba8
 b
 2app/src/main/java/com/example/shazam/VerCancion.kt,d\5\d583beb02365340d36553510e3e5c61571c27057
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
