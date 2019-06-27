@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.diamanond_manager">
-
-    <dist:module dist:instant="true"/>
+          package="com.example.a05_layouts_recyclerview">
 
     <application
             android:allowBackup="true"
-            android:fullBackupContent="@xml/backup_descriptor"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme"
-            tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainMenu">
+            android:theme="@style/AppTheme">
+        <activity android:name=".ConexionHTTP">
         </activity>
-        <activity android:name=".FormularioInsercion">
+        <activity android:name=".ResultadoPropioActivity">
         </activity>
-        <activity android:name=".ListViewPrueba"/> <!-- activity android:name=".DiamantePrueba1"></activity -->
+        <activity
+                android:name=".IntentRespuestaActivity"
+                android:label="@string/title_activity_intent_respuesta"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ReciclerViewActivity">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DiamantePrueba1"/>
     </application>
 
 </manifest>

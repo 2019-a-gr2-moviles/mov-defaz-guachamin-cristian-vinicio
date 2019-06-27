@@ -7,4 +7,11 @@
     <string name="lbl_btn_manager">Gestión de diamantes</string>
     <string name="lb_btn_gallery">Ver Galería</string>
     <string name="lbl_list_listafav">Lista de canciones favoritas</string>
+    <string name="fi_formulario_ins">Formulario de Inserción</string>
+    <string name="fi_nombre">Nombre</string>
+    <string name="fi_nuevo_diamante">Insertando nuevo Diamante</string>
+    <string name="menu_princ">Menú principal</string>
+    <string name="crear_diam">Crear nuevo Diamante</string>
+    <string name="actualizar_diam">Actualizar diamante</string>
+    <string name="eliminar_diam">Eliminar diamante</string>
 </resources>

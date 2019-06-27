@@ -18,11 +18,11 @@ class DiamantePrueba1 : AppCompatActivity() {
             Toast.LENGTH_SHORT).show()
 
         btn_gallery.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, ListViewPrueba::class.java))
         }
 
         btn_manager.setOnClickListener {
-            startActivity(Intent(this, ListViewPrueba::class.java))
+            startActivity(Intent(this, FormularioInsercion::class.java))
         }
     }
 }

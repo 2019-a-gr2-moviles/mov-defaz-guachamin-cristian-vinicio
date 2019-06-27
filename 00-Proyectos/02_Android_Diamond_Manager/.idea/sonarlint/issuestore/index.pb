@@ -9,3 +9,5 @@ k
 ;app/src/main/java/com/example/diamanond_manager/Diamante.kt,6\c\6c54ee297b97d83146c5b544f88a1483da953fb7
 o
 ?app/src/main/java/com/example/diamanond_manager/MainActivity.kt,3\4\3468ba5cd4167b3f8df5cc041173fcc32050c47d
+v
+Fapp/src/main/java/com/example/diamanond_manager/FormularioInsercion.kt,3\c\3c87a0a9b65011471e2febeacf6930f6a67b1963
