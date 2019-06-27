@@ -7,4 +7,11 @@
     <string name="lbl_btn_manager">Diamond manage</string>
     <string name="lb_btn_gallery">View Gallery</string>
     <string name="lbl_list_listafav">List of Favourite Songs</string>
+    <string name="fi_formulario_ins">Insert Form</string>
+    <string name="fi_nombre">Name</string>
+    <string name="fi_nuevo_diamante">Adding New Diamond</string>
+    <string name="menu_princ">Main menú</string>
+    <string name="crear_diam">Create new diamond</string>
+    <string name="actualizar_diam">Update diamond</string>
+    <string name="eliminar_diam">Delete diamond</string>
 </resources>

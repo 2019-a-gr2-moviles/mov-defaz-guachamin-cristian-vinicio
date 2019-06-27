@@ -19,7 +19,7 @@ class ListViewPrueba : AppCompatActivity() {
         lp.add("3.  Lost On You     JP")
         lp.add("4.  Money       Mia Vaile")
 
-        val lvAdapter = ArrayAdapter<String>(this,
+        val lvAdapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1,
             lp
         )
