@@ -61,7 +61,15 @@ module.exports = {
     serviciosDeUsuario: { // Nombre de atributo de la relación.
       collection: 'servicio', // Nombre del modelo a relacionar
       via: 'fkUsuario' // Nombre del atributo FK del otro modelo, es el campo para hacer la relación
+    },
+
+    //Configuracion del hijo
+    fkEmpresa: {  // Nombre del FK para la relacion
+      model: 'empresa', // Nombre del modelo a relacionar (papa)
+      // required: true // OPCIONAL -> Siempre ingresar el FK
     }
+
+
 
 
   },
