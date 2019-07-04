@@ -21,10 +21,10 @@ class FormularioInsercion : AppCompatActivity() {
         spinnerArray.add("Colourless")
 
         //Adapter for spinner
-        spin_claridad.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray)
+        spinner_claridad.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray)
 
         //item selected listener for spinner
-        spin_claridad.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinner_claridad.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }

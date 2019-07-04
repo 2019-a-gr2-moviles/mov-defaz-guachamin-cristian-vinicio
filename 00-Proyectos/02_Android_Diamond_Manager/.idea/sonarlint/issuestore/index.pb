@@ -11,3 +11,7 @@ o
 ?app/src/main/java/com/example/diamanond_manager/MainActivity.kt,3\4\3468ba5cd4167b3f8df5cc041173fcc32050c47d
 v
 Fapp/src/main/java/com/example/diamanond_manager/FormularioInsercion.kt,3\c\3c87a0a9b65011471e2febeacf6930f6a67b1963
+g
+7app/src/main/java/com/example/diamanond_manager/User.kt,8\7\8793c17cf46f5634641ad05f43c17449b88bcabb
+s
+Capp/src/main/java/com/example/diamanond_manager/detalle_diamante.kt,8\7\876958e78d30173d5e7a9af263d5002df1ddec1e
