@@ -1,7 +1,7 @@
 package com.example.json_http
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,13 +15,23 @@ class MainActivity : AppCompatActivity() {
             irAIntentHttp()
         }
 
-
+        btn_mapa.setOnClickListener {
+            irAMapsActivity()
+        }
     }
 
     private fun irAIntentHttp(){
         val intentExplicito = Intent(
             this,
             ConexionHttpActivity::class.java
+        )
+        startActivity(intentExplicito)
+    }
+
+    private fun irAMapsActivity(){
+        val intentExplicito = Intent(
+            this,
+            MapsActivity::class.java
         )
         startActivity(intentExplicito)
     }

@@ -6,7 +6,7 @@
     <string name="image_desc">user image</string>
     <string name="lbl_btn_manager">Diamond manage</string>
     <string name="lb_btn_gallery">View Gallery</string>
-    <string name="lbl_list_listafav">List of Favourite Songs</string>
+    <string name="lbl_list_listafav">Recently Added</string>
     <string name="fi_formulario_ins">Insert Form</string>
     <string name="fi_nombre">Name</string>
     <string name="fi_nuevo_diamante">Adding New Diamond</string>
@@ -14,4 +14,16 @@
     <string name="crear_diam">Create new diamond</string>
     <string name="actualizar_diam">Update diamond</string>
     <string name="eliminar_diam">Delete diamond</string>
+    <string name="fi_quilate">Carat</string>
+    <string name="fi_precio">Cost</string>
+    <string name="fi_guardar">Save</string>
+    <string name="fi_cancelar">Cancel</string>
+    <string name="lv_nuevo_diamante">Add new Diamond</string>
+    <string name="lay_imagen_diamante">Diamond image</string>
+    <string name="fi_paisOrigen">Origin</string>
+    <string name="lbl_editar">Edit</string>
+    <string name="lbl_eliminar">Delete</string>
+    <string name="lbl_origen">Origin</string>
+    <string name="lbl_editar">Edit</string>
+    <string name="lbl_eliminar">Delete</string>
 </resources>
