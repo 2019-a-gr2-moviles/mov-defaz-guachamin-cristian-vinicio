@@ -10,20 +10,20 @@
     <TextView
             android:text="@string/fi_formulario_ins"
             android:layout_width="225dp"
-            android:layout_height="30dp"
+            android:layout_height="23dp"
             android:id="@+id/txv_menuPrinc" android:textStyle="bold"
             android:textColor="#000000" android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/txv1_bar"
             app:layout_constraintTop_toTopOf="@+id/txv1_bar" app:layout_constraintBottom_toBottomOf="@+id/txv1_bar"
             android:layout_marginStart="8dp" app:layout_constraintVertical_bias="0.0"
-            android:textAlignment="viewStart"/>
+            android:textAlignment="viewStart" android:layout_marginTop="4dp"/>
     <TextView
-            android:layout_width="110dp"
+            android:layout_width="115dp"
             android:layout_height="30dp"
             android:id="@+id/txv2_bar" android:background="#000000"
             app:layout_constraintTop_toTopOf="@+id/txv_menuPrinc"
-            app:layout_constraintBottom_toBottomOf="@+id/txv_menuPrinc" app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/txv_menuPrinc" android:layout_marginStart="12dp"/>
+            app:layout_constraintBottom_toBottomOf="@+id/txv_menuPrinc" app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/txv_menuPrinc" android:layout_marginStart="8dp"/>
     <TextView
             android:layout_width="58dp"
             android:layout_height="30dp"
@@ -34,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.036"/>
     <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
@@ -45,22 +45,22 @@
             android:autofillHints="@string/app_name" android:hint="@string/fi_nombre"/>
     <TextView
             android:text="@string/fi_nuevo_diamante"
-            android:layout_width="wrap_content"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:id="@+id/txt_titulo_ins"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.545"
-            app:layout_constraintVertical_bias="0.188"/>
+            app:layout_constraintVertical_bias="0.188" android:textSize="16sp" android:textAlignment="center"/>
     <Spinner
             android:layout_width="210dp"
             android:layout_height="40dp"
-            android:id="@+id/spinner_claridad" app:layout_constraintStart_toStartOf="@+id/txt_nombre_diamante"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_nombre_diamante"
-            app:layout_constraintEnd_toEndOf="@+id/txt_nombre_diamante" android:spinnerMode="dropdown"
-            app:layout_constraintHorizontal_bias="0.666"/>
+            android:id="@+id/spinner_claridad"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toStartOf="@+id/txt_precio"
+            app:layout_constraintEnd_toEndOf="@+id/txt_precio" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_precio"/>
     <Spinner
             android:layout_width="210dp"
             android:layout_height="40dp"
@@ -76,13 +76,13 @@
     <EditText
             android:layout_width="210dp"
             android:layout_height="43dp"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             android:ems="10"
             android:id="@+id/txt_quilate"
             android:hint="@string/fi_quilate" android:autofillHints="@string/fi_quilate"
-            app:layout_constraintStart_toStartOf="@+id/spinner_corte"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_corte" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_corte" android:layout_marginTop="8dp"/>
+            app:layout_constraintStart_toStartOf="@+id/txt_nombre_diamante" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nombre_diamante"
+            app:layout_constraintEnd_toEndOf="@+id/txt_nombre_diamante"/>
     <EditText
             android:layout_width="209dp"
             android:layout_height="39dp"
@@ -96,9 +96,10 @@
     <Spinner
             android:layout_width="210dp"
             android:layout_height="40dp"
-            android:id="@+id/spinner_paises" app:layout_constraintStart_toStartOf="@+id/txt_precio"
-            app:layout_constraintEnd_toEndOf="@+id/txt_precio" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_precio"/>
+            android:id="@+id/spinner_paises"
+            app:layout_constraintStart_toStartOf="@+id/spinner_corte"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_corte" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_corte"/>
     <Button
             android:text="@string/fi_guardar"
             android:layout_width="wrap_content"

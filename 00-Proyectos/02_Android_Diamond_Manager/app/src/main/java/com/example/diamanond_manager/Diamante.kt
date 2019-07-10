@@ -1,49 +1,29 @@
 package com.example.diamanond_manager
 
-import android.os.Parcel
-import android.os.Parcelable
+class Diamante(
+    var id: Int,
+    var nombreDiamante: String,
+    var caratDiamante: Double,
+    var precioDiamante: Double,
+    var fkClarity: FKClaridad,
+    var fkColor: FKColor,
+    var fkCountry: FKPais,
+    var fkCut: FKCut
+) {
+    constructor() : this(
+        // Por defecto
+        0,
+        "",
+        0.0,
+        0.0,
+        FKClaridad(0, ""),
+        FKColor(0, ""),
+        FKPais(0, ""),
+        FKCut(0, "")
+    )
 
-class Diamante (
-        var nombre: String,
-        var claridad: String,
-        var color: String,
-        var corte: String,
-        var quilate: Double,
-        var precio: Double,
-        var paisOrigen: String
-):Parcelable
-{
-    constructor(parcel: Parcel) : this(
-            parcel.readString()!!,
-            parcel.readString()!!,
-            parcel.readString()!!,
-            parcel.readString()!!,
-            parcel.readDouble(),
-            parcel.readDouble(),
-            parcel.readString()!!)
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(nombre)
-        parcel.writeString(claridad)
-        parcel.writeString(color)
-        parcel.writeString(corte)
-        parcel.writeDouble(quilate)
-        parcel.writeDouble(precio)
-        parcel.writeString(paisOrigen)
+    override fun toString(): String {
+        return "Diamante(id=$id, nombreDiamante='$nombreDiamante', caratDiamante=$caratDiamante, " +
+                "precioDiamante=$precioDiamante, fkClarity=$fkClarity, fkColor=$fkColor, fkCountry=$fkCountry, fkCut=$fkCut)"
     }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Diamante> {
-        override fun createFromParcel(parcel: Parcel): Diamante {
-            return Diamante(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Diamante?> {
-            return arrayOfNulls(size)
-        }
-    }
-
 }
