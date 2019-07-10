@@ -18,7 +18,7 @@ class DiamantePrueba1 : AppCompatActivity() {
             Toast.LENGTH_SHORT).show()
 
         btn_gallery.setOnClickListener {
-            startActivity(Intent(this, ListViewPrueba::class.java))
+            startActivity(Intent(this, RecyclerViewDiamantes::class.java))
         }
 
         btn_manager.setOnClickListener {
