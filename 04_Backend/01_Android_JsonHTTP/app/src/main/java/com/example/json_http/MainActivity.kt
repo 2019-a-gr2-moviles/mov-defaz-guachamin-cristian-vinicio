@@ -18,6 +18,13 @@ class MainActivity : AppCompatActivity() {
         btn_mapa.setOnClickListener {
             irAMapsActivity()
         }
+
+        btn_cicloVida.setOnClickListener {
+            irACicloDeVida()
+        }
+        btn_fragmento.setOnClickListener {
+            irAFragmentos()
+        }
     }
 
     private fun irAIntentHttp(){
@@ -32,6 +39,22 @@ class MainActivity : AppCompatActivity() {
         val intentExplicito = Intent(
             this,
             MapsActivity::class.java
+        )
+        startActivity(intentExplicito)
+    }
+
+    private fun irACicloDeVida(){
+        val intentExplicito = Intent(
+            this,
+            CicloVidaActivity::class.java
+        )
+        startActivity(intentExplicito)
+    }
+
+    private fun irAFragmentos(){
+        val intentExplicito = Intent(
+            this,
+            FragmentosActivity::class.java
         )
         startActivity(intentExplicito)
     }

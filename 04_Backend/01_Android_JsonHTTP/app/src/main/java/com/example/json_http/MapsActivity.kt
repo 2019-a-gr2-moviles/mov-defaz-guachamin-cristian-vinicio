@@ -43,8 +43,6 @@ class MapsActivity : AppCompatActivity(),
         Log.i("map","Me voy a empezar a mover")
     }
 
-
-
     private lateinit var mMap: GoogleMap
     private var tienePermisosLocalizacion = false
 
@@ -73,7 +71,7 @@ class MapsActivity : AppCompatActivity(),
         establecerListeners(mMap)
 
         // Add a marker in Sydney and move the camera
-        val foch = LatLng(-0.202806, -78.490988)
+        val foch = LatLng(-0.209369, -78.489530)
         val titulo = "Plaza Foch"
         val zoom = 17f
         anadirMarcador(foch,titulo)
