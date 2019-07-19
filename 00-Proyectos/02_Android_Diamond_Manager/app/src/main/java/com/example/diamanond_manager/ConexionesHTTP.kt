@@ -3,6 +3,7 @@ package com.example.diamanond_manager
 import android.util.Log
 import com.beust.klaxon.Klaxon
 import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
 
 class ConexionesHTTP {
@@ -14,7 +15,8 @@ class ConexionesHTTP {
         private var bddColor = arrayListOf<FKColor>()
         private var bddCorte = arrayListOf<FKCut>()
         private var bddPaises = arrayListOf<FKPais>()
-        private const val IP = "http://192.168.1.25:1337"
+        private const val IP = "http://192.168.137.1:1337"
+        //     private const val IP = "http://192.168.1.25:1337"
 
         fun listarDatosDiamantes(): List<Diamante> {
             val url = "$IP/diamond"
@@ -154,6 +156,25 @@ class ConexionesHTTP {
             }
             return null
         }
+
+        /*
+        fun insertarDiamante(data: String){
+            val url = "$IP/diamond"
+            url.httpPost(data)
+                .responseString { request, response, result ->
+                    when(result){
+                        is Failure -> {
+                            val error = result.getException()
+                            Log.i("http","Error: $error")
+                        }
+                        is Success -> {
+                            val empresaString = result.get();
+                            Log.i("http", "Mensaje: $empresaString")
+                        }
+                    }
+                }
+        }
+        */
 
         /*
               fun conectarABackend(peticion: String): String {
