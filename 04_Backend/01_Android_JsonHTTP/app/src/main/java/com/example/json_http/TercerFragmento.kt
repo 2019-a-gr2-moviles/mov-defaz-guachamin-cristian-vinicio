@@ -3,6 +3,7 @@ package com.example.json_http
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,8 +33,16 @@ class TercerFragmento : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            val contador = it.getInt("contador")
+            Log.i("fragmento","contador: $contador")
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if(arguments!=null){
+            val contador = arguments?.getInt("contador")
+            Log.i("fragmento", "contador: $contador")
         }
     }
 
@@ -55,7 +64,7 @@ class TercerFragmento : Fragment() {
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+             //throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
     }
 

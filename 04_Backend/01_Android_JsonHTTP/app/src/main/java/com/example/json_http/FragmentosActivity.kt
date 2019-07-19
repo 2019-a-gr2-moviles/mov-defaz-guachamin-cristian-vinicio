@@ -13,6 +13,14 @@ class FragmentosActivity : AppCompatActivity() {
         btn_primero.setOnClickListener {
             abrirPrimerFragmento()
         }
+
+        btn_segundo.setOnClickListener {
+            abrirSegundoFragmento()
+        }
+
+        btn_tercero.setOnClickListener {
+            abrirTercerFragmento()
+        }
     }
 
     private fun abrirPrimerFragmento(){
@@ -28,7 +36,7 @@ class FragmentosActivity : AppCompatActivity() {
         transaccion.commit()
     }
 
-    fun abrirSegundoFragmento(){
+    private fun abrirSegundoFragmento(){
         // 1) Manager
         val fragmentManager = supportFragmentManager
         // 2) Empezar transacción
@@ -37,6 +45,24 @@ class FragmentosActivity : AppCompatActivity() {
         val segundoFragmento = SegundoFragmento()
         // 4) Reemplezamos el fragmento
         transaccion.replace(R.id.layout_frag, segundoFragmento)
+        // 5) Terminar la transaccion
+        transaccion.commit()
+    }
+
+    private fun abrirTercerFragmento(){
+        // 1) Manager
+        val fragmentManager = supportFragmentManager
+        // 2) Empezar transacción
+        val transaccion = fragmentManager.beginTransaction()
+        // 3) Definir la instancia del fragmento
+        val tercerFragmento = TercerFragmento()
+        // 4) Reemplezamos el fragmento
+
+        val argumentos = Bundle()
+        argumentos.putInt("contador", 1)
+        tercerFragmento.arguments = argumentos
+
+        transaccion.replace(R.id.layout_frag, tercerFragmento)
         // 5) Terminar la transaccion
         transaccion.commit()
     }
