@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pokemon App GR2</string>
+    <string name="login_usuario">Username</string>
+    <string name="login_pass">Password</string>
+    <string name="login_log">Login</string>
+    <string name="mp_gestion">Manage Trainer</string>
+    <string name="mp_crear">Create Trainer</string>
+    <string name="mp_mapa_pokemon">Show Pokemon Map</string>
+    <string name="listaEnt_titulo">Trainer List</string>
+    <string name="ce_nombre">Trainer Name</string>
+    <string name="ce_apellido">Trainer Last Name</string>
+    <string name="ce_fechanac">Birth Date</string>
+    <string name="ce_medallas">Num of Medals</string>
+    <string name="ce_campeon">Actual cCampion</string>
+    <string name="ce_btn_crear">Create Trainer</string>
+    <string name="ve_ver_pokemones">Show Pokemons</string>
+    <string name="ve_editar_entrenador">Edit Trainer</string>
+    <string name="ve_crear_pokemon">Create pokemon</string>
+    <string name="ve_eliminar_ent">Remove trainer</string>
+    <string name="cp_idEntrenador">Trainer ID</string>
+    <string name="cp_nombre">Pokemon Name</string>
+    <string name="cp_poderuno">Special Power One</string>
+    <string name="cp_poderdos">Special Power Two</string>
+    <string name="cp_fecha_cap">Catch date</string>
+    <string name="cp_nivel">Level</string>
+    <string name="cp_pokemon">Create Pokemon</string>
+    <string name="listaPok_titulo">Pokemon\' List</string>
+    <string name="vp_editar_pokemon">Update Pokemon</string>
+    <string name="vp_eliminar">Remove Pokemon</string>
+    <string name="ce_latitud">Latitude</string>
+    <string name="ce_longitud">Longitude</string>
+</resources>
