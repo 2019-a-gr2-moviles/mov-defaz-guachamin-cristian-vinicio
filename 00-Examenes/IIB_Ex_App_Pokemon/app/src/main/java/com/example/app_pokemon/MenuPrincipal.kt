@@ -1,7 +1,7 @@
 package com.example.app_pokemon
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_menu_principal.*
@@ -54,7 +54,11 @@ class MenuPrincipal : AppCompatActivity() {
     }
 
     private fun irAMapaDeHijos(){
-        //
+        val intentExplicito = Intent(
+            this,
+            ClaseCargarPokemon::class.java
+        )
+        startActivity(intentExplicito)
     }
 
 
