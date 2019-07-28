@@ -1,10 +1,9 @@
 package com.example.app_pokemon
 
-import android.content.pm.PackageManager
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import androidx.core.content.ContextCompat
+import android.os.Handler
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -15,12 +14,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapsPokemon : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    //  private var tienePermisosLocalizacion = false
     private var bddPokemonesPar = arrayListOf<ClasePokemonParcelable>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //solicitarPermisosLocalizacion()
         setContentView(R.layout.activity_maps_pokemon)
         this.bddPokemonesPar = intent.getParcelableArrayListExtra("listaPokemon")
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -41,23 +38,25 @@ class MapsPokemon : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
 
         mMap = googleMap
-        establecerConfiguracionMaps(mMap)
-        /*
-        val foch = LatLng(-0.202178, -78.491622)
-        val titulo = "Plaza Foch"
-        val foch2 = LatLng(-0.209171, -78.497844)
-        val titulo2 = "Ejido"
-        val zoom = 15f
-        anadirMarcador(foch,titulo)
-        anadirMarcador(foch2,titulo2)
-        */
+      //  establecerConfiguracionMaps(mMap)
         bddPokemonesPar.forEach {
             val lat = it.latitud.toDouble()
             val long = it.longitud.toDouble()
             val coordenadas = LatLng(lat, long)
-            anadirMarcador(coordenadas, it.nombrePokemon)
+            anadirMarcador(coordenadas, "${it.idPokemon}- ${it.nombrePokemon}")
+            moverCamaraConZom(coordenadas, 15f)
         }
-        // moverCamaraConZom(foch, zoom)
+
+
+        mMap.setOnMarkerClickListener { marker ->
+            val id = marker.title.split("-")[0].trim()
+            // Iniciar después de 3 segundos
+            Handler().postDelayed({
+                solicitarDetallesDePokemon(id)
+            }, 3000)
+            false
+        }
+
     }
 
     // Crear marcador
@@ -76,50 +75,30 @@ class MapsPokemon : AppCompatActivity(), OnMapReadyCallback {
         )
     }
 
-    private fun establecerConfiguracionMaps(mapa: GoogleMap) {
-
-        val contexto = this.applicationContext // Guardando el contexto de  la actividad
-        // Para que no de el error en el caso de no tener permisos.
-        with(mapa) {
-
-            // Copiando aqui:
-            val permisoFineLocation = ContextCompat
-                .checkSelfPermission(
-                    contexto,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            val tienePermiso = permisoFineLocation == PackageManager.PERMISSION_GRANTED
-            // Siempre hay que revisar que si realmenet tenemos permisos para acceder a la localización.
-            if (tienePermiso) {
-                mapa.isMyLocationEnabled = true
-            }
-            this.uiSettings.isZoomControlsEnabled = true
-            uiSettings.isMyLocationButtonEnabled = true
-        }
+    private fun solicitarDetallesDePokemon(idPokemon: String) {
+        val pokemon = buscarPokemon(idPokemon)
+        val datosPokemon = ClasePokemonParcelable(
+            pokemon.idPokemon,
+            pokemon.nombrePokemon,
+            pokemon.poderUno,
+            pokemon.poderDos,
+            pokemon.fechaCaptura,
+            pokemon.nivel,
+            pokemon.latitud,
+            pokemon.longitud,
+            0
+        )
+        val intentExplicito = Intent(
+            this,
+            VerPokemon::class.java
+        )
+        intentExplicito.putExtra("pokemon", datosPokemon)
+        startActivity(intentExplicito)
     }
 
-    /*
-    private fun solicitarPermisosLocalizacion(){
-        val permisoFineLocation = ContextCompat
-            .checkSelfPermission(
-                this.applicationContext,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        val tienePermiso = permisoFineLocation == PackageManager.PERMISSION_GRANTED
-
-        if(tienePermiso){
-            Log.i("mapa","Tiene permisos de FINE_LOCATION")
-            this.tienePermisosLocalizacion = true
-        }else{
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf( // Arreglo de permisos
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                ),
-                1 // Código que vamps a esperar
-            )
-        }
-
+    private fun buscarPokemon(id: String): ClasePokemonParcelable {
+        return bddPokemonesPar.find {
+            it.idPokemon == id.toInt()
+        }!!
     }
-    */
 }
