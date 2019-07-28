@@ -14,7 +14,8 @@
             android:text="@string/listaPok_titulo" android:textStyle="bold" android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/lv_pokemones"
             app:layout_constraintEnd_toEndOf="@+id/lv_pokemones" android:layout_marginBottom="36dp"
-            app:layout_constraintBottom_toTopOf="@+id/lv_pokemones" app:layout_constraintHorizontal_bias="0.497"/>
+            app:layout_constraintBottom_toTopOf="@+id/lv_pokemones" app:layout_constraintHorizontal_bias="0.497"
+            android:textAlignment="center"/>
     <ListView
             android:layout_width="357dp"
             android:layout_height="536dp"

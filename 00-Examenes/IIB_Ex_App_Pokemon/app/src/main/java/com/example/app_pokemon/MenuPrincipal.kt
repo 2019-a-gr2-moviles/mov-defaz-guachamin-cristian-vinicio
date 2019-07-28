@@ -27,15 +27,22 @@ class MenuPrincipal : AppCompatActivity() {
     }
 
     private fun mostrarToastConUsuario(){
-        Toast.makeText(applicationContext,
-            DatosUsuario.obtenerUsuarioActual().nombreusuario,
-            Toast.LENGTH_SHORT).show()
+        val accionRealizada = intent.getStringExtra("crearEntrenador")
+        if(accionRealizada == null){
+            Toast.makeText(applicationContext,
+                "Bienvenido de nuevo ${DatosUsuario.obtenerUsuarioActual().nombreusuario}",
+                Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(applicationContext,
+                accionRealizada,
+                Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun irAListaEntrenadores(){
         startActivity(
             Intent(this,
-                ListViewPokemon::class.java )
+                ListViewEntrenador::class.java )
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
     }
 

@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun validarSesion(){
-        val nombreUsuario = txv_login_usuario.text.toString()
-        val contrasenia = txv_login_pass.text.toString()
+        val nombreUsuario = txv_login_usuario.text.toString().trim()
+        val contrasenia = txv_login_pass.text.toString().trim()
         if(nombreUsuario == "" || contrasenia == ""){
             Toast.makeText(applicationContext,
                "Error de inicio de sesión :(",

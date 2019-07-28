@@ -14,7 +14,7 @@
     <string name="ce_campeon">Campeón Actual</string>
     <string name="ce_btn_crear">Crear Entrenador</string>
     <string name="ve_ver_pokemones">Ver Pokemones</string>
-    <string name="ve_editar_entrenador">Editar Entrenador</string>
+    <string name="ve_editar_entrenador">Actualizar Entrenador</string>
     <string name="ve_crear_pokemon">Crear pokemon</string>
     <string name="ve_eliminar_ent">Eliminar entrenador</string>
     <string name="cp_idEntrenador">Entrenador ID</string>
@@ -29,4 +29,5 @@
     <string name="vp_eliminar">Eliminar pokemon</string>
     <string name="ce_latitud">Latitud</string>
     <string name="ce_longitud">Longitud</string>
+    <string name="title_activity_maps_pokemon">Map</string>
 </resources>

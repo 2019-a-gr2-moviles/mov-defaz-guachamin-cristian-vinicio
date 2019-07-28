@@ -3,16 +3,16 @@ package com.example.app_pokemon
 import android.os.Parcel
 import android.os.Parcelable
 
-class ClasePokemon(
-    private var idPokemon: Int,
-    private var nombrePokemon: String,
-    private var poderUno: String,
-    private var poderDos: String,
-    private var fechaCaptura: String,
-    private var nivel: Int,
-    private var latitud: String,
-    private var longitud: String,
-    private var fkEntrenador: Int
+class ClasePokemonParcelable(
+    var idPokemon: Int,
+    var nombrePokemon: String,
+    var poderUno: String,
+    var poderDos: String,
+    var fechaCaptura: String,
+    var nivel: Int,
+    var latitud: String,
+    var longitud: String,
+    var fkEntrenador: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -42,12 +42,12 @@ class ClasePokemon(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<ClasePokemon> {
-        override fun createFromParcel(parcel: Parcel): ClasePokemon {
-            return ClasePokemon(parcel)
+    companion object CREATOR : Parcelable.Creator<ClasePokemonParcelable> {
+        override fun createFromParcel(parcel: Parcel): ClasePokemonParcelable {
+            return ClasePokemonParcelable(parcel)
         }
 
-        override fun newArray(size: Int): Array<ClasePokemon?> {
+        override fun newArray(size: Int): Array<ClasePokemonParcelable?> {
             return arrayOfNulls(size)
         }
     }
