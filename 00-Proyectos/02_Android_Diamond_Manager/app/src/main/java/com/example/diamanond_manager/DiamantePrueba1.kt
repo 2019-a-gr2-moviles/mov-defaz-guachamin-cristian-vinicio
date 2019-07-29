@@ -11,10 +11,9 @@ class DiamantePrueba1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diamante_prueba1)
-        val user = intent.getParcelableExtra<User>("user")
 
         Toast.makeText(applicationContext,
-            user.toString(),
+            "Bienvenid@ de nuevo ${DatosUsuario.obtenerUsuarioActual().nombreusuario}",
             Toast.LENGTH_SHORT).show()
 
         btn_gallery.setOnClickListener {

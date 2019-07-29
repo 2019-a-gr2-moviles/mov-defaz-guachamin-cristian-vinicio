@@ -36,14 +36,15 @@
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.292"/>
+                app:layout_constraintVertical_bias="0.292" android:textColor="#D7F5F5F5"/>
         <TextView
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/txv_lay_origen" android:hint="@string/fi_paisOrigen"
                 app:layout_constraintStart_toStartOf="@+id/txv_lay_nombre"
                 app:layout_constraintEnd_toEndOf="@+id/txv_lay_nombre" android:layout_marginTop="28dp"
-                app:layout_constraintTop_toBottomOf="@+id/txv_lay_nombre" app:layout_constraintHorizontal_bias="0.0"/>
+                app:layout_constraintTop_toBottomOf="@+id/txv_lay_nombre" app:layout_constraintHorizontal_bias="0.0"
+                android:textColor="#DDF7F4F4"/>
         <TextView
                 android:text="@string/fi_nombre"
                 android:layout_width="65dp"

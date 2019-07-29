@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -24,10 +25,19 @@ class AdaptadorDiamante(
             textviewNombre=view.findViewById(R.id.txv_lay_nombre) as TextView
             textViewPais=view.findViewById(R.id.txv_lay_origen) as TextView
             imagenDiamante=view.findViewById(R.id.img_lay_diamante) as ImageView
-
             val capa1 = view.findViewById(R.id.rv_detalle_diamante) as ConstraintLayout
             capa1.setOnClickListener {
                 contexto.verDetalleDiamante(textviewNombre.text.toString())
+            }
+
+            val botonEditar=view.findViewById(R.id.btn_lay_editar) as ImageButton
+            botonEditar.setOnClickListener {
+               contexto.enviarDatosDiamanteAEditar(textviewNombre.text.toString())
+            }
+
+            val botonEliminar = view.findViewById(R.id.btn_lay_borrar) as ImageButton
+            botonEliminar.setOnClickListener {
+                contexto.borrarDiamante(textviewNombre.text.toString())
             }
         }
     }

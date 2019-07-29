@@ -7,7 +7,7 @@
     <string name="lbl_btn_manager">Diamond manage</string>
     <string name="lb_btn_gallery">View Gallery</string>
     <string name="lbl_list_listafav">Recently Added</string>
-    <string name="fi_formulario_ins">Insert Form</string>
+    <string name="fi_formulario_ins">New Diamond Form</string>
     <string name="fi_nombre">Name:</string>
     <string name="fi_nuevo_diamante">Adding New Diamond</string>
     <string name="menu_princ">Main menú</string>
@@ -26,4 +26,7 @@
     <string name="lbl_origen">Origin</string>
     <string name="lbl_regresar">Back</string>
     <string name="lbl_filtrar">Filter by:</string>
+    <string name="fi_formulario_edit">Diamond Edit Form</string>
+    <string name="fi_editar_diamante">Editting Diamond</string>
+    <string name="fi_guardar_cambios">Save changes</string>
 </resources>

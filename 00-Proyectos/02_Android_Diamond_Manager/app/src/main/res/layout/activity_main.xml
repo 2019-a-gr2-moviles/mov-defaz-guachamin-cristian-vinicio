@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" android:background="@drawable/wallpaper1">
+        tools:context=".MainActivity" android:background="@drawable/wall2">
 
     <Button
             android:id="@+id/btn_login"
@@ -15,16 +15,16 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="#00DA9393"
+            android:backgroundTint="#6D090808"
             android:backgroundTintMode="src_in"
             android:fontFamily="sans-serif"
-            android:foregroundTint="#0022969B"
             android:text="@string/lbl_btn_login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.681" app:layout_constraintHorizontal_bias="0.511"/>
+            app:layout_constraintVertical_bias="0.681" app:layout_constraintHorizontal_bias="0.511"
+            android:textColor="#EEFFFFFF"/>
 
     <EditText
             android:id="@+id/txt_user"
@@ -36,14 +36,14 @@
             android:fontFamily="sans-serif"
             android:hint="@string/lbl_txt_userLogin"
             android:inputType="textPersonName"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:drawableStart="@drawable/ic_account_box_black_24dp"
             android:drawablePadding="5dp"
             app:layout_constraintBottom_toTopOf="@+id/txt_pass"
             app:layout_constraintEnd_toEndOf="@+id/txt_pass"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/txt_pass"
-            android:drawableTintMode="add"/>
+            android:drawableTintMode="add" android:textColor="#FAFFFFFF" android:foregroundTint="#E4F1EBEB"/>
 
     <EditText
             android:id="@+id/txt_pass"
@@ -55,12 +55,12 @@
             android:fontFamily="sans-serif"
             android:hint="@string/lbl_txt_passwd"
             android:inputType="textPassword"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:drawableStart="@drawable/ic_vpn_key_black_24dp"
             android:drawablePadding="5dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_login"
             app:layout_constraintEnd_toEndOf="@+id/btn_login"
-            app:layout_constraintStart_toStartOf="@+id/btn_login"/>
+            app:layout_constraintStart_toStartOf="@+id/btn_login" android:textColor="#E8FFFFFF"/>
 
     <ImageView
             android:id="@+id/imageView3"

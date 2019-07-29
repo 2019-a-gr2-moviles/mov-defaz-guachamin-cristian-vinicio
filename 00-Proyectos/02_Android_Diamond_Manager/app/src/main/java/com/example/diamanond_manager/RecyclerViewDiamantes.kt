@@ -3,87 +3,101 @@ package com.example.diamanond_manager
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.widget.Toast
+import com.beust.klaxon.Klaxon
+import com.github.kittinunf.fuel.httpDelete
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.activity_recycler_view_prueba.*
 
 class RecyclerViewDiamantes : AppCompatActivity() {
 
-    var bddDiamantesRecyclerView = arrayListOf<DiamanteParcelable>()
-    val filtros = arrayOf(" ","Claridad","Color","Corte","País de Origen")
+    private var bddDiamantesRecyclerView = arrayListOf<DiamanteParcelable>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view_prueba)
-        val parentLayout = findViewById<View>(android.R.id.content)
         bddDiamantesRecyclerView = transformarDiamantesAParcelable()
-        cargarSpinner()
+        mostrarToastDeCambios()
 
-        // Iniciar después de 4 segundos
-        mostrarSnackbar(parentLayout,"Cargando datos" )
-        Handler().postDelayed({
-            Log.i("http", "Ya tengo datos, tamanio: ${bddDiamantesRecyclerView.size}")
+        txv_rv_titulo.setOnClickListener {
             iniciarRecyclerView(
                 bddDiamantesRecyclerView,
                 this,
-                rv_lista_diamantes)
-        }, 5000)
+                rv_lista_diamantes
+            )
+        }
 
-        // Ir a formulario minsercion
         btn_agregar_diamante.setOnClickListener {
             irAFormularioDeInsercion()
         }
     }
 
-    private fun transformarDiamantesAParcelable(): ArrayList<DiamanteParcelable>{
-        val listaDiamantes = arrayListOf<DiamanteParcelable>()
-        ConexionesHTTP.listarDatosDiamantes().forEach{
-            val diamante = DiamanteParcelable(
-                it.id,
-                it.nombreDiamante,
-                it.caratDiamante,
-                it.precioDiamante,
-                it.fkClarity.clarityName,
-                it.fkCut.cutName,
-                it.fkColor.colorName,
-                it.fkCountry.countryName,
-                it.fkCut.id
-            )
-            listaDiamantes.add(diamante)
+    private fun mostrarToastDeCambios(){
+
+        val mensajeDeInsercion =  intent?.getStringExtra("diamantecreado")
+        val mensajeDeActualizacion =  intent?.getStringExtra("diamanteEditado")
+        val mensajeDeEliminacion =  intent?.getStringExtra("diamanateEliminado")
+
+        if(mensajeDeInsercion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeInsercion,
+                Toast.LENGTH_SHORT
+            ).show()
         }
-       return listaDiamantes
+        if(mensajeDeActualizacion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeActualizacion,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        if(mensajeDeEliminacion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeEliminacion,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
-    private fun cargarSpinner(){
-        val adapter =  ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            filtros)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner_filtros.adapter = adapter
-        spinner_filtros.setSelection(-1, true)
-
-        spinner_filtros.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when(position){
-                    1 -> {
-                        mostrarSnackbar(view!!,"Seleccion: $position")
+    private fun transformarDiamantesAParcelable(): ArrayList<DiamanteParcelable> {
+        val listaDiamantes = arrayListOf<DiamanteParcelable>()
+        val url = ServidorBackend.getURL("diamond")
+        Log.i("http", "Mi URL: $url")
+        url.httpGet().responseString { _, _, result ->
+            when (result) {
+                is Result.Failure -> {
+                    val error = result.getException()
+                    Log.i("http", "Error listando diamantes: $error")
+                }
+                is Result.Success -> {
+                    val data = result.get()
+                    val datosParseados = Klaxon().parseArray<Diamante>(data)
+                    datosParseados?.forEach {
+                        val diamante = DiamanteParcelable(
+                            it.id,
+                            it.nombreDiamante,
+                            it.caratDiamante,
+                            it.precioDiamante,
+                            it.fkClarity.clarityName,
+                            it.fkCut.cutName,
+                            it.fkColor.colorName,
+                            it.fkCountry.countryName,
+                            it.fkCut.id
+                        )
+                        listaDiamantes.add(diamante)
+                        Log.i("http", "${it.id} - ${it.nombreDiamante}")
                     }
                 }
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Nada
-            }
-
         }
+        return listaDiamantes
     }
 
     private fun iniciarRecyclerView(
@@ -104,7 +118,7 @@ class RecyclerViewDiamantes : AppCompatActivity() {
 
     fun verDetalleDiamante(nombreDiamante: String) {
         bddDiamantesRecyclerView.forEach {
-            if(it.nombre == nombreDiamante){
+            if (it.nombre == nombreDiamante) {
                 val intentExplicito = Intent(
                     this,
                     VerDetalleDiamante::class.java
@@ -115,56 +129,50 @@ class RecyclerViewDiamantes : AppCompatActivity() {
         }
     }
 
+    fun enviarDatosDiamanteAEditar(nombreDiamante: String) {
+        bddDiamantesRecyclerView.forEach {
+            if (it.nombre == nombreDiamante) {
+                val intentExplicito = Intent(
+                    this,
+                    FormularioEdicion::class.java
+                )
+                intentExplicito.putExtra("diamante", it)
+                Log.i("http", "Datos a editar: $it")
+                startActivity(intentExplicito)
+            }
+        }
+    }
+
+    fun borrarDiamante(nombreDiamante: String) {
+        var idDiamanteBuscado = 0
+        bddDiamantesRecyclerView.forEach {
+            if (it.nombre == nombreDiamante) {
+                idDiamanteBuscado = it.id
+            }
+        }
+        val url = ServidorBackend.getURL("diamond/$idDiamanteBuscado")
+        Log.i("http", "Mi URL: $url")
+        url.httpDelete().responseString { _, _, result ->
+            when (result) {
+                is Result.Failure -> {
+                    val error = result.getException()
+                    Log.i("http", "Error borrando diamante: $error")
+                }
+                is Result.Success -> {
+                    startActivity(intent.putExtra("diamanateEliminado",
+                        "${DatosUsuario.obtenerUsuarioActual().nombreusuario} eliminó un diamante"))
+                    finish()
+                }
+            }
+        }
+    }
+
     private fun irAFormularioDeInsercion() {
         val intentExplicito = Intent(
             this,
             FormularioInsercion::class.java
         )
         startActivity(intentExplicito)
-    }
-
-    // ,"Claridad","Color","Corte","País de Origen"
-    /*
-    fun filtrarDiamante(opcion: Int): List<DiamanteParcelable>{
-        bddDiamantesRecyclerView.forEach {diamond ->
-            when(opcion){
-               1 -> {
-                    return bddDiamantesRecyclerView.filter { eachDiamond ->
-                        eachDiamond.claridad == categoryDiamond
-                    }
-                }
-                2 -> {
-                    return bddDiamantesRecyclerView.filter { eachDiamond ->
-                        eachDiamond.clarity == categoryDiamond
-                    }
-                }
-                3 -> {
-                    return bddDiamantesRecyclerView.filter { eachDiamond ->
-                        eachDiamond.color == categoryDiamond
-                    }
-                }
-                4 -> {
-                    return bddDiamantesRecyclerView.filter { eachDiamond ->
-                        eachDiamond.cut == categoryDiamond
-                    }
-                }
-            }
-        }
-        return null
-    }
-    */
-
-    fun editarDiamante() {
-
-    }
-
-    fun eliminarDiamante() {
-
-    }
-
-    private fun mostrarSnackbar(view: View, texto:String){
-        Snackbar.make(view, texto, Snackbar.LENGTH_LONG)
-            .setAction("Action",null).show()
     }
 
 }

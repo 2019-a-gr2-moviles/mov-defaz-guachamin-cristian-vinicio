@@ -4,14 +4,14 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context=".DiamantePrueba1" android:background="@drawable/diam_wall">
+                                             tools:context=".DiamantePrueba1" android:background="@drawable/wall2">
 
     <Button
             android:text="@string/lb_btn_gallery"
             android:layout_width="252dp"
             android:layout_height="58dp"
-            android:id="@+id/btn_gallery" android:backgroundTint="#25E7DFDF"
-            android:textColor="#BFFFFFFF"
+            android:id="@+id/btn_gallery" android:backgroundTint="#6D090808"
+            android:textColor="#BFFDFCFC"
             app:layout_constraintStart_toStartOf="@+id/btn_manager"
             app:layout_constraintEnd_toEndOf="@+id/btn_manager" android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_manager" app:layout_constraintHorizontal_bias="0.0"/>
@@ -19,8 +19,8 @@
             android:text="@string/lbl_btn_manager"
             android:layout_width="252dp"
             android:layout_height="58dp"
-            android:id="@+id/btn_manager" android:backgroundTint="#25E7DFDF"
-            android:textColor="#BFFFFFFF" android:layout_marginBottom="8dp"
+            android:id="@+id/btn_manager" android:backgroundTint="#6D090808"
+            android:textColor="#BFF7F6F6" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"

@@ -8,13 +8,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.github.kittinunf.fuel.httpPost
+import com.github.kittinunf.fuel.httpPut
 import com.github.kittinunf.result.Result
-import kotlinx.android.synthetic.main.activity_formulario_insercion.*
+import kotlinx.android.synthetic.main.activity_formulario_edicion.*
 
-class FormularioInsercion : AppCompatActivity() {
+class FormularioEdicion : AppCompatActivity() {
 
-    // Arreglo de atributos
     private val arregloClaridad = arrayListOf<String>()
     private val arregloColor = arrayListOf<String>()
     private val arregloCorte = arrayListOf<String>()
@@ -23,21 +22,20 @@ class FormularioInsercion : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_formulario_insercion)
+        setContentView(R.layout.activity_formulario_edicion)
         cargarDatosASpinners()
-
-        txt_titulo_ins.setOnClickListener{
+        txt_titulo_edit.setOnClickListener {
             inicializarSpinners()
+            cargarDatosDiamante()
+        }
+        btn_guardar_edit.setOnClickListener {
+            construirNuevosDatosDiamante()
         }
 
-        btn_guardar.setOnClickListener {
-            construirNuevoDiamante()
-        }
     }
 
-    private fun cargarDatosASpinners(){
+    private fun cargarDatosASpinners() {
         arregloClaridad.add("Nivel de claridad:")
-
         CargadorSpinners.listarDatosClaridad().forEach {
             arregloClaridad.add(it.clarityName)
         }
@@ -56,15 +54,19 @@ class FormularioInsercion : AppCompatActivity() {
         CargadorSpinners.listarDatosPaises().forEach {
             arregloPaises.add(it.countryName)
         }
+
     }
 
-    private fun inicializarSpinners(){
-        spinner_claridad.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloClaridad)
-        spinner_color.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloColor)
-        spinner_corte.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloCorte)
-        spinner_paises.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloPaises)
-        spinner_claridad.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) { }
+    private fun inicializarSpinners() {
+        // Spinners
+        spinner_claridad_edit.adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloClaridad)
+        spinner_color_edit.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloColor)
+        spinner_corte_edit.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloCorte)
+        spinner_paises_edit.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arregloPaises)
+
+        spinner_claridad_edit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, p3: Long) {
                 if (posicion > 0) {
                     val id = CargadorSpinners
@@ -75,8 +77,8 @@ class FormularioInsercion : AppCompatActivity() {
             }
         }
 
-        spinner_color.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) { }
+        spinner_color_edit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, p3: Long) {
                 if (posicion > 0) {
                     val id = CargadorSpinners
@@ -87,8 +89,8 @@ class FormularioInsercion : AppCompatActivity() {
             }
         }
 
-        spinner_corte.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) { }
+        spinner_corte_edit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, p3: Long) {
                 if (posicion > 0) {
                     val id = CargadorSpinners
@@ -99,8 +101,8 @@ class FormularioInsercion : AppCompatActivity() {
             }
         }
 
-        spinner_paises.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) { }
+        spinner_paises_edit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, p3: Long) {
                 if (posicion > 0) {
                     val id = CargadorSpinners
@@ -110,17 +112,33 @@ class FormularioInsercion : AppCompatActivity() {
                 }
             }
         }
+
     }
 
-    private fun construirNuevoDiamante(){
+    private fun cargarDatosDiamante() {
+        val diamanteDeItemAEditar: DiamanteParcelable? = this.intent.getParcelableExtra("diamante")
+        if (diamanteDeItemAEditar != null) {
+            diamanteNuevo.id = diamanteDeItemAEditar.id
+        }
+        txt_nombre_diamante_edit.setText(diamanteDeItemAEditar?.nombre)
+        txt_quilate_edit.setText(diamanteDeItemAEditar?.quilate.toString())
+        txt_precio_edit.setText(diamanteDeItemAEditar?.precio.toString())
+        spinner_claridad_edit.setSelection(arregloClaridad.indexOf(diamanteDeItemAEditar?.claridad))
+        spinner_color_edit.setSelection(arregloColor.indexOf(diamanteDeItemAEditar?.color))
+        spinner_corte_edit.setSelection(arregloCorte.indexOf(diamanteDeItemAEditar?.corte))
+        spinner_paises_edit.setSelection(arregloPaises.indexOf(diamanteDeItemAEditar?.pais))
+    }
 
-        val nombre = txt_nombre_diamante.text.toString().trim()
-        val quilate = txt_quilate.text.toString().trim()
-        val precio = txt_precio.text.toString().trim()
+    private fun construirNuevosDatosDiamante() {
+
+        val nombre = txt_nombre_diamante_edit.text.toString().trim()
+        val quilate = txt_quilate_edit.text.toString().trim()
+        val precio = txt_precio_edit.text.toString().trim()
         // Validar que no esté en cero la posicion de los spinners o campos vacios
         if (nombre == "" || quilate == "" || precio == ""
-            || spinner_claridad.selectedItemPosition < 1 || spinner_color.selectedItemPosition < 1
-            || spinner_corte.selectedItemPosition < 1 || spinner_paises.selectedItemPosition < 1) {
+            || spinner_claridad_edit.selectedItemPosition < 1 || spinner_color_edit.selectedItemPosition < 1
+            || spinner_corte_edit.selectedItemPosition < 1 || spinner_paises_edit.selectedItemPosition < 1
+        ) {
             Toast.makeText(
                 applicationContext,
                 "Rellene todos los campos",
@@ -134,7 +152,7 @@ class FormularioInsercion : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }else{
-                val diamanteACrear: Array<Any> = arrayOf(
+                val diamanteAEditar: Array<Any> = arrayOf(
                     nombre,
                     quilate.toDouble(),
                     precio.toDouble(),
@@ -143,49 +161,49 @@ class FormularioInsercion : AppCompatActivity() {
                     diamanteNuevo.fkCountry.id,
                     diamanteNuevo.fkCut.id
                 )
-                conctarConBackendPost(diamanteACrear)
+                conectarConBackendPut(diamanteAEditar)
             }
         }
     }
 
-    private fun conctarConBackendPost(diamanteACrear: Array<Any> ){
-
-        val diamanteAInsertar = listOf(
-            "nombreDiamante" to diamanteACrear[0],
-            "caratDiamante" to diamanteACrear[1],
-            "precioDiamante" to diamanteACrear[2],
-            "fkClarity" to diamanteACrear[3],
-            "fkColor" to diamanteACrear[4],
-            "fkCountry" to diamanteACrear[5],
-            "fkCut" to diamanteACrear[6]
+    private fun conectarConBackendPut(arrDiamante: Array<Any>) {
+        val diamanteAActualizar = listOf(
+            "nombreDiamante" to arrDiamante[0],
+            "caratDiamante" to arrDiamante[1],
+            "precioDiamante" to arrDiamante[2],
+            "fkClarity" to arrDiamante[3],
+            "fkColor" to arrDiamante[4],
+            "fkCountry" to arrDiamante[5],
+            "fkCut" to arrDiamante[6]
         )
-        diamanteAInsertar.forEach{Log.i("http",it.toString())}
-        val url = ServidorBackend.getURL("diamond")
+        diamanteAActualizar.forEach{Log.i("http",it.toString())}
+       // val idDiamante = CargadorSpinners.buscarID("diamante", arrDiamante[0].toString())
+        val url = ServidorBackend.getURL("diamond/${diamanteNuevo.id}")
         Log.i("http", "Mi URL: $url")
-        url.httpPost(diamanteAInsertar)
+        url.httpPut(diamanteAActualizar)
             .responseString { _, _, result ->
                 when (result) {
                     is Result.Failure -> {
                         val error = result.getException()
-                        Log.i("http", "Error insertando: $error")
+                        Log.i("http", "Error actualizando: $error")
                     }
                     is Result.Success -> {
-                        val diamanteString = result.get()
-                        Log.i("http", "Diamante creado: $diamanteString")
+                        val empresaString = result.get()
+                        Log.i("http", "Mensaje: $empresaString")
                         volverALista()
                     }
                 }
             }
     }
 
-    private fun volverALista(){
+    private fun volverALista() {
         val intentExplicito = Intent(
             this,
             RecyclerViewDiamantes::class.java
         )
         intentExplicito.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intentExplicito.putExtra("diamantecreado",
-            "${DatosUsuario.obtenerUsuarioActual().nombreusuario} ha creado un nuevo diamante")
+        intentExplicito.putExtra("diamanteEditado",
+            "${DatosUsuario.obtenerUsuarioActual().nombreusuario} actualizó un diamante")
         startActivity(intentExplicito)
     }
 }
