@@ -72,20 +72,19 @@ class CrearPokemon : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         Log.i("http", "Pokemon creado\n $request \n Response $response")
-                        volverAmenu()
+                        notificarInsercion()
                     }
                 }
             }
     }
 
-    private fun volverAmenu(){
+    private fun notificarInsercion(){
         startActivity(
             Intent(this,
                 ListViewPokemon::class.java )
                 .putExtra(
                     "pokemonCreado",
                     "${DatosUsuario.obtenerUsuarioActual().nombreusuario} ha creado un nuevo pokemon")
-                .putExtra("idEntrenadorActual", txv_cp_idEntrenador.text.toString())
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
     }
 }

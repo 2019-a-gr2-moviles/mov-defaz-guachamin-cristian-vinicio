@@ -19,10 +19,7 @@ class ListViewPokemon : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view_pokemon)
-       // val id = intent.getStringExtra("idEntrenador")
-      //  bddPokemones = obtenerListaPokemones(Integer.valueOf(id))
-       // Log.i("http","identrenador: $id")
-        cargarIdEntrenador()
+        recibirIdEntrenador()
 
 
         txv_cp_titulo.setOnClickListener {
@@ -34,27 +31,37 @@ class ListViewPokemon : AppCompatActivity() {
         }
     }
 
-    private fun mostrarToastConUsuario(){
-        val accionRealizada = intent.getStringExtra("pokemonActualizado")
-        if(accionRealizada != null){
-            Toast.makeText(applicationContext,
-                accionRealizada,
-                Toast.LENGTH_SHORT).show()
+    private fun recibirNotificaciones(){
+        val mensajeDeInsercion = intent?.getStringExtra("pokemonCreado")
+        val mensajeDeActualizacion = intent?.getStringExtra("pokemonActualizado")
+        val mensajeDeEliminacion = intent?.getStringExtra("pokemonEliminado")
+
+        if(mensajeDeInsercion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeInsercion,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        if(mensajeDeActualizacion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeActualizacion,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        if(mensajeDeEliminacion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeEliminacion,
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
-    private fun cargarIdEntrenador(){
-        val id = intent.getStringExtra("idEntrenador")
-        if(id != null){
-            val id3 = intent.getStringExtra("idEntrenador")
-            bddPokemones = obtenerListaPokemones(Integer.valueOf(id3))
-            Log.i("http","id3: $id3")
-        }else{
-            val id2 = intent.getStringExtra("idEntrenadorActual")
-            bddPokemones = obtenerListaPokemones(Integer.valueOf(id2))
-            mostrarToastConUsuario()
-            Log.i("http","id2: $id2")
-        }
+    private fun recibirIdEntrenador(){
+        recibirNotificaciones()
+        bddPokemones = obtenerListaPokemones(Integer.valueOf(obtenerId()))
     }
 
     private fun crearAdaptador(listaPokemon: ArrayList<String>){
@@ -135,4 +142,15 @@ class ListViewPokemon : AppCompatActivity() {
         return null
     }
 
+    companion object{
+        private var idEntrenador = ""
+
+        fun almacenarId(idEntrenadorActual: String){
+            idEntrenador = idEntrenadorActual
+        }
+
+        fun obtenerId(): String{
+            return idEntrenador
+        }
+    }
 }

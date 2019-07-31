@@ -19,7 +19,7 @@ class ListViewEntrenador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view_entrenador)
         bddEntrenadores = cargarEntrenadores()
-        mostrarToastConUsuario()
+        recibirNotificaciones()
 
         txv_lv_entrenador.setOnClickListener {
             val listaEntrenadores = arrayListOf<String>()
@@ -30,12 +30,31 @@ class ListViewEntrenador : AppCompatActivity() {
         }
     }
 
-    private fun mostrarToastConUsuario(){
-        val accionRealizada = intent.getStringExtra("entrenadorCreado")
-        if(accionRealizada != null){
-            Toast.makeText(applicationContext,
-                accionRealizada,
-                Toast.LENGTH_SHORT).show()
+    private fun recibirNotificaciones(){
+        val mensajeDeInsercion = intent?.getStringExtra("entrenadorCreado")
+        val mensajeDeActualizacion = intent?.getStringExtra("entrenadorActualizado")
+        val mensajeDeEliminacion = intent?.getStringExtra("entrenadorEliminado")
+
+        if(mensajeDeInsercion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeInsercion,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        if(mensajeDeActualizacion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeActualizacion,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        if(mensajeDeEliminacion != null){
+            Toast.makeText(
+                applicationContext,
+                mensajeDeEliminacion,
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

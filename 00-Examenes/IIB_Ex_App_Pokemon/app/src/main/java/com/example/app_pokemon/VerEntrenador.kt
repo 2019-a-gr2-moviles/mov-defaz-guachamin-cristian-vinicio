@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.github.kittinunf.fuel.httpDelete
 import com.github.kittinunf.fuel.httpPut
 import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.activity_ver_entrenador.*
@@ -28,6 +29,10 @@ class VerEntrenador : AppCompatActivity() {
         btn_editarEntrenador.setOnClickListener {
             actualizarEntrenador()
         }
+
+        btn_eliminarEntrenador.setOnClickListener {
+            eliminarEntrenador()
+        }
     }
 
     private fun obteneryCargarDatosEntrenador() {
@@ -38,6 +43,7 @@ class VerEntrenador : AppCompatActivity() {
         txv_ape_Entrenador.setText(entrenadorAMostrar.apellidoEntrenador)
         txv_fecha_entrenador.setText(entrenadorAMostrar.fechaNac)
         txv_medalla_entrenador.setText(entrenadorAMostrar.medallas.toString())
+        ListViewPokemon.almacenarId(txv_idEntrenador.text.toString())
 
         if (entrenadorAMostrar.campeonActual) {
             switch_campeon.isChecked = true
@@ -49,9 +55,9 @@ class VerEntrenador : AppCompatActivity() {
             this,
             ListViewPokemon::class.java
         )
-        intentExplicito.putExtra("idEntrenador", id)
+        ListViewPokemon.almacenarId(txv_idEntrenador.text.toString())
+        //intentExplicito.putExtra("idEntrenador", id)
         startActivity(intentExplicito)
-
     }
 
     private fun irACrearPokemon(id: String){
@@ -98,7 +104,6 @@ class VerEntrenador : AppCompatActivity() {
             )
             conectarBackendPut(entrenadorActualizado)
         }
-
     }
 
     private fun conectarBackendPut(entrenadorActualizado: ClaseEntrenadorParcelable) {
@@ -123,19 +128,47 @@ class VerEntrenador : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         Log.i("http", "Entrenador actualizado")
-                        volverALista()
+                        notificarUpdate()
                     }
                 }
             }
     }
 
-    private fun volverALista(){
+    private fun notificarUpdate(){
         startActivity(
             Intent(this,
                 ListViewEntrenador::class.java )
                 .putExtra(
-                    "crearEntrenador",
-                    "${DatosUsuario.obtenerUsuarioActual()} ha creado un nuevo entrenador")
+                    "entrenadorActualizado",
+                    "${DatosUsuario.obtenerUsuarioActual().nombreusuario} actualizó un entrenador")
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+    }
+
+    private fun eliminarEntrenador(){
+        val id = txv_idEntrenador.text.toString().trim()
+        val url = ClaseServidorBackend.getURL("entrenador/$id")
+        Log.i("http", "Mi URL: $url")
+        url.httpDelete().responseString { _, _, result ->
+            when (result) {
+                is Result.Failure -> {
+                    val error = result.getException()
+                    Log.i("http", "Error borrando entrenador: $error")
+                }
+                is Result.Success -> {
+                    Log.i("http", "Entrenador eliminado")
+                    notificarDelete()
+                }
+            }
+        }
+    }
+
+    private fun notificarDelete(){
+        startActivity(
+            Intent(this,
+                ListViewEntrenador::class.java )
+                .putExtra(
+                    "entrenadorEliminado",
+                    "${DatosUsuario.obtenerUsuarioActual().nombreusuario} eliminó un entrenador")
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
     }
 

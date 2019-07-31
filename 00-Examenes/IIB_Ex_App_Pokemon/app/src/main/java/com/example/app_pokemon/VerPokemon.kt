@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.github.kittinunf.fuel.httpDelete
 import com.github.kittinunf.fuel.httpPut
 import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.activity_ver_pokemon.*
@@ -20,6 +21,10 @@ class VerPokemon : AppCompatActivity() {
 
         btn_actualizarPokemon.setOnClickListener {
             actualizarPokemon()
+        }
+
+        btn_eliminarPokemon.setOnClickListener {
+            eliminarPokemon()
         }
     }
 
@@ -90,20 +95,47 @@ class VerPokemon : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         Log.i("http", "Pokemon actualizado")
-                        volverAmenu()
+                        notificarUpdate()
                     }
                 }
             }
     }
 
-    private fun volverAmenu(){
+    private fun notificarUpdate(){
         startActivity(
             Intent(this,
                 ListViewPokemon::class.java )
                 .putExtra(
                     "pokemonActualizado",
                     "${DatosUsuario.obtenerUsuarioActual().nombreusuario} ha actualizado un pokemon")
-                .putExtra("idEntrenadorActual", txv_idPokemon.text.toString())
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+    }
+
+    private fun eliminarPokemon(){
+        val id = txv_idPokemon.text.toString().trim()
+        val url = ClaseServidorBackend.getURL("pokemon/$id")
+        Log.i("http", "Mi URL: $url")
+        url.httpDelete().responseString { _, _, result ->
+            when (result) {
+                is Result.Failure -> {
+                    val error = result.getException()
+                    Log.i("http", "Error borrando pokemon: $error")
+                }
+                is Result.Success -> {
+                    Log.i("http", "Pokemon eliminado")
+                    notificarDelete()
+                }
+            }
+        }
+    }
+
+    private fun notificarDelete(){
+        startActivity(
+            Intent(this,
+                ListViewPokemon::class.java )
+                .putExtra(
+                    "pokemonEliminado",
+                    "${DatosUsuario.obtenerUsuarioActual().nombreusuario} eliminó un pokemon")
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
     }
 }

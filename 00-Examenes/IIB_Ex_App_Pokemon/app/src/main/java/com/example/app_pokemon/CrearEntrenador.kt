@@ -62,13 +62,13 @@ class CrearEntrenador : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         Log.i("http", "Entrenador creado")
-                        volverAmenu()
+                        notificarInsercion()
                     }
                 }
             }
     }
 
-    private fun volverAmenu(){
+    private fun notificarInsercion(){
         startActivity(
             Intent(this,
                 ListViewEntrenador::class.java )

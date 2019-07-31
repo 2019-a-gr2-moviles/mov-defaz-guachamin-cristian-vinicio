@@ -97,5 +97,6 @@
             android:layout_height="50dp"
             android:id="@+id/btn_eliminarEntrenador" app:layout_constraintStart_toStartOf="@+id/btn_editarEntrenador"
             app:layout_constraintEnd_toEndOf="@+id/btn_editarEntrenador" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/btn_editarEntrenador" app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintTop_toBottomOf="@+id/btn_editarEntrenador" app:layout_constraintHorizontal_bias="0.0"
+            android:textAlignment="center"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
